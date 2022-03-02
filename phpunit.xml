@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php">
+
+    <!-- Testsuite for contract tests with Pact -->
+    <testsuites>
+        <testsuite name="Pact">
+            <directory>tests/Pact/</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- PHPUnit Listener to write and publish the results to the pact broker -->
+    <listeners>
+        <listener class="Pact\Listener\DatenkraftPactTestListener">
+            <arguments>
+                <array>
+                    <element key="0">
+                        <string>Pact</string>
+                    </element>
+                </array>
+            </arguments>
+        </listener>
+    </listeners>
+</phpunit>

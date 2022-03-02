@@ -1,0 +1,40 @@
+version: 2.1
+aliases:
+  - &workflow-name-mirroring "Github Mirroring Workflow"
+  - &job-name-mirror "Mirror Repository to Github"
+  - &context-cloud "cloud_deployment"
+executors:
+  git:
+    docker:
+      - image: alpine/git:latest
+  php-dev:
+    docker:
+      - image: europe-docker.pkg.dev/dk-gg-rgstry/base/php:dev
+        auth:
+          username: _json_key
+          password: $GCLOUD_SERVICE_ACCOUNT
+jobs:
+  *job-name-mirror :
+    executor: git
+    steps:
+      - checkout:
+          name: Checkout source code
+      - run:
+          name: Mirror the repository to Github
+          command: |
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+            git remote add github git@github.com:datenkraft/bb-fulfillment-shopify-service-php-client.git
+            git push github main --tags
+workflows:
+  version: 2
+  *workflow-name-mirroring :
+    jobs:
+      - *job-name-mirror :
+          context: *context-cloud
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(v)(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
