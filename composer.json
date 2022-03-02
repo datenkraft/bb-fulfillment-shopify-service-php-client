@@ -1,5 +1,5 @@
 {
-  "name": "datenkraft/bb-fulfillment-api-php-client",
+  "name": "datenkraft/bb-fulfillment-shopify-service-php-client",
   "description": "The Fulfillment Shopify Service PHP Client enables you to work with the Fulfillment Shopify Service",
   "type": "library",
   "require": {
