@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client;
 
-use Jane\OpenApiRuntime\Client\Exception\InvalidFetchModeException;
+use Jane\Component\OpenApiRuntime\Client\Exception\InvalidFetchModeException;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 trait EndpointTrait

@@ -26,12 +26,14 @@ jobs:
             touch ~/.ssh/known_hosts
             ssh-keyscan -H github.com >> ~/.ssh/known_hosts
             git remote add github git@github.com:datenkraft/bb-fulfillment-shopify-service-php-client.git
-            git push github main --tags
+            git checkout v1
+            git push -u github v1
+            git push github --tags
 workflows:
   version: 2
   *workflow-name-mirroring :
     jobs:
-      - *job-name-mirror :
+      - *job-name-mirror:
           context: *context-cloud
           filters:
             branches:
