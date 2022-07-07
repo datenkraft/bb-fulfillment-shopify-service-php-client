@@ -52,6 +52,6 @@ class GetAuthRoleCollection extends \Datenkraft\Backbone\Client\FulfillmentShopi
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }

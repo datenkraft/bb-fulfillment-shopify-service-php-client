@@ -7,16 +7,8 @@
   },
   "servers": [
     {
-      "url": "https://fulfillment-shopify-service.conqore.niceshops.com/v1",
-      "description": "Production server"
-    },
-    {
-      "url": "https://fulfillment-shopify-service.staging.backbone.datenkraft.info/v1",
-      "description": "Staging server"
-    },
-    {
-      "url": "https://localhost:30420",
-      "description": "Development server"
+      "url": "/v1",
+      "description": "Production Server"
     }
   ],
   "paths": {
@@ -32,7 +24,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": []
       }
     },
     "/docs/openapi.{format}": {
@@ -124,7 +117,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "oAuthAuthorization": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/auth/role-identity": {
@@ -186,7 +187,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "oAuthAuthorization": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -246,16 +255,6 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/errorResponse"
-                }
-              }
-            }
-          },
           "409": {
             "description": "Conflict",
             "content": {
@@ -296,7 +295,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "oAuthAuthorization": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -305,16 +312,6 @@
         "summary": "Delete one or more role to identity assignments in this resource server",
         "description": "Delete one or more role to identity assignments in this resource server",
         "operationId": "deleteAuthRoleIdentityCollection",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/authRoleIdentityCollection"
-              }
-            }
-          }
-        },
         "responses": {
           "204": {
             "description": "No Content"
@@ -389,111 +386,132 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "oAuthAuthorization": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/action/test-shop-register": {
+      "post": {
+        "tags": [
+          "test-shop-register"
+        ],
+        "summary": "Try to register shopify as a test shop.",
+        "description": "Try to register shopify as a test shop.",
+        "operationId": "testShopRegister",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "shopifyShopDomain": {
+                    "description": "shopifyShopDomain",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "shopCode": {
+                      "description": "ShopCode",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oAuthAuthorization": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
   "components": {
     "schemas": {
-      "collection": {
-        "title": "collection",
-        "properties": {
-          "pagination": {
-            "$ref": "#/components/schemas/collectionPagination"
-          },
-          "data": {
-            "description": "",
-            "type": "object"
-          }
-        },
-        "type": "object"
-      },
-      "collectionPagination": {
-        "title": "collectionPagination",
-        "description": "Class AbstractPaginatedResourceCollection",
-        "properties": {
-          "page": {
-            "description": "The page contained in this collection.",
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "description": "The page size used for reading the collection.",
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "type": "object"
-      },
-      "authRoleResource": {
-        "required": [
-          "roleCode",
-          "name"
-        ],
-        "properties": {
-          "roleCode": {
-            "description": "Role Code",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "authRoleCollection": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/authRoleResource"
-        }
-      },
-      "getAuthPermissionCollectionResponse": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/authPermissionResource"
-        }
-      },
-      "authPermissionResource": {
-        "required": [
-          "permissionCode",
-          "name"
-        ],
-        "properties": {
-          "permissionCode": {
-            "description": "Permission Code",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "authRoleIdentityCollection": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/authRoleIdentityResource"
-        }
-      },
-      "authRoleIdentityResource": {
-        "required": [
-          "roleCode",
-          "identityId"
-        ],
-        "properties": {
-          "roleCode": {
-            "description": "Role Code",
-            "type": "string"
-          },
-          "identityId": {
-            "description": "Identity ID",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
       "errorResponse": {
         "properties": {
           "errors": {
@@ -522,6 +540,104 @@
           }
         },
         "type": "object"
+      },
+      "collection": {
+        "title": "collection",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/collectionPagination"
+          },
+          "data": {
+            "description": "",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "collectionPagination": {
+        "title": "collectionPagination",
+        "properties": {
+          "page": {
+            "description": "The page contained in this collection.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "description": "The page size used for reading the collection.",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "type": "object"
+      },
+      "authRoleIdentityCollection": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/authRoleIdentityResource"
+        }
+      },
+      "authRoleIdentityResource": {
+        "required": [
+          "roleCode",
+          "identityId"
+        ],
+        "properties": {
+          "roleCode": {
+            "description": "Role Code",
+            "type": "string"
+          },
+          "identityId": {
+            "description": "Identity ID",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "authPermissionResource": {
+        "required": [
+          "permissionCode",
+          "name"
+        ],
+        "properties": {
+          "permissionCode": {
+            "description": "Permission Code",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "getAuthPermissionCollectionResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/authPermissionResource"
+        }
+      },
+      "authRoleResource": {
+        "required": [
+          "roleCode",
+          "name"
+        ],
+        "properties": {
+          "roleCode": {
+            "description": "Role Code",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "authRoleCollection": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/authRoleResource"
+        }
       }
     },
     "securitySchemes": {
@@ -530,11 +646,17 @@
         "description": "OAuth2 Authorization",
         "flows": {
           "clientCredentials": {
-            "tokenUrl": "https://authentication-api.conqore.niceshops.com/oauth/token",
+            "tokenUrl": null,
             "refreshUrl": "UNDEFINED",
             "scopes": {}
           }
         }
+      },
+      "bearerAuth": {
+        "type": "http",
+        "description": "Bearer Token Authorization",
+        "bearerFormat": "JWT",
+        "scheme": "bearer"
       }
     }
   }
