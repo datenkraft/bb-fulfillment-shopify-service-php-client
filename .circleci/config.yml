@@ -1,0 +1,52 @@
+version: 2.1
+aliases:
+  - &workflow-name-trigger-generate "Generate Client Workflow"
+  - &job-name-trigger-client-generators "Trigger client version generators"
+  - &context-pipeline "pipeline_trigger"
+  - &branch-trigger "trigger"
+parameters:
+  run_workflow_trigger_generate:
+    type: boolean
+    default: false
+  openapi_url:
+    type: string
+    default: ""
+jobs:
+  *job-name-trigger-client-generators:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: Check requirements
+          command: |
+            if [ -z "<<pipeline.parameters.openapi_url>>" ]; then
+              echo "Missing pipeline.parameters.openapi_url"
+              exit 1
+            fi
+      - checkout:
+          name: Checkout source code
+      - run:
+          name: Trigger client generators
+          command: |
+            # trigger pipeline on all vX.X branches            
+            branches=$(git branch -r --format "%(refname:short)" | grep -E '^origin/v[0-9]+\.[0-9]+$')
+            echo $branches
+            
+            for branch in $branches; do
+              curl -X POST https://circleci.com/api/v2/project/bitbucket/datenkraft/${CIRCLE_PROJECT_REPONAME}/pipeline \
+                --header "Circle-Token: $CIRCLE_TOKEN" \
+                --header "content-type: application/json" \
+                --data '{"branch":"${branch}", "parameters":{"run_workflow_generate":true, "openapi_url":"<<pipeline.parameters.openapi_url>>"}}'
+            done
+workflows:
+  version: 2
+  *workflow-name-trigger-generate:
+    when: <<pipeline.parameters.run_workflow_trigger_generate>>
+    jobs:
+      - *job-name-trigger-client-generators:
+          context:
+            - *context-pipeline
+          filters:
+            branches:
+              only:
+                - *branch-trigger
