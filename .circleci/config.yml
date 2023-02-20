@@ -7,7 +7,7 @@ aliases:
   - &job-name-generate "Generate client"
   - &job-name-publish "Publish client"
   - &context-cloud "cloud_deployment"
-  - &image-name "europe-docker.pkg.dev/dk-gg-rgstry/base/php-cli:2.0.2-dev"
+  - &image-name "europe-docker.pkg.dev/dk-gg-rgstry/base/php-cli:dev"
 parameters:
   run_workflow_generate:
     default: false
