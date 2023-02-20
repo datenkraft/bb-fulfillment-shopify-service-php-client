@@ -51,7 +51,6 @@ jobs:
                 --header "content-type: application/json" \
                 --data "{\"branch\":\"${branch}\", \"parameters\":{\"run_workflow_generate\":true, \"openapi_url\":\"<<pipeline.parameters.openapi_url>>\"}}"
             done
-            set +x
 workflows:
   version: 2
   *workflow-name-trigger-generate:
