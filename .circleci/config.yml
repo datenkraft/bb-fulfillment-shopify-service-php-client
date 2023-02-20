@@ -11,6 +11,9 @@ parameters:
   openapi_url:
     type: string
     default: ""
+  openapi_major_version:
+    type: string
+    default: ""
 jobs:
   *job-name-trigger-client-generators:
     docker:
@@ -23,21 +26,32 @@ jobs:
               echo "Missing pipeline.parameters.openapi_url"
               exit 1
             fi
+            if [ -z "<<pipeline.parameters.openapi_major_version>>" ]; then
+              echo "Missing pipeline.parameters.openapi_major_version"
+              exit 1
+            fi
+            if ! [[ "<<pipeline.parameters.openapi_major_version>>" =~ ^v[0-9]+$ ]]; then
+              echo "Param pipeline.parameters.openapi_major_version does not match format requirements"
+              exit 1
+            fi
       - checkout:
           name: Checkout source code
       - run:
           name: Trigger client generators
           command: |
-            # trigger pipeline on all vX.X branches            
-            branches=$(git branch -r --format "%(refname:short)" | grep -E '^origin/v[0-9]+\.[0-9]+$')
+            # trigger pipeline on all <<pipeline.parameters.openapi_major_version>>.X branches
+            
+            branches=$(git branch -r --format "%(refname:short)" | grep -E '^origin/<<pipeline.parameters.openapi_major_version>>\.[0-9]+$')
             echo $branches
             
+            set -x
             for branch in $branches; do
               curl -X POST https://circleci.com/api/v2/project/bitbucket/datenkraft/${CIRCLE_PROJECT_REPONAME}/pipeline \
                 --header "Circle-Token: $CIRCLE_TOKEN" \
                 --header "content-type: application/json" \
-                --data '{"branch":"${branch}", "parameters":{"run_workflow_generate":true, "openapi_url":"<<pipeline.parameters.openapi_url>>"}}'
+                --data "{\"branch\":\"${branch}\", \"parameters\":{\"run_workflow_generate\":true, \"openapi_url\":\"<<pipeline.parameters.openapi_url>>\"}}"
             done
+            set +x
 workflows:
   version: 2
   *workflow-name-trigger-generate:
