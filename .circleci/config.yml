@@ -41,7 +41,7 @@ jobs:
           command: |
             # trigger pipeline on all <<pipeline.parameters.openapi_major_version>>.X branches
             
-            branches=$(git branch -r --format "%(refname:short)" | grep -E '^origin/<<pipeline.parameters.openapi_major_version>>\.[0-9]+$')
+            branches=$(git branch -r --format "%(refname:short)" | grep -E '^origin/<<pipeline.parameters.openapi_major_version>>\.[0-9]+$' | sed 's/origin\///')
             echo $branches
             
             set -x
