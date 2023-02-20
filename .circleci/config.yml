@@ -1,12 +1,12 @@
 version: 2.1
 aliases:
-  - &workflow-name-mirroring "Github Mirroring Workflow"
   - &workflow-name-generate "Generate client workflow"
   - &workflow-name-publish "Publish client workflow"
   - &job-name-mirror "Mirror Repository to Github"
   - &job-name-generate "Generate client"
   - &job-name-publish "Publish client"
   - &context-cloud "cloud_deployment"
+  - &branch-filter-publish '/^v[0-9]+\.[0-9]+$/'
   - &image-name "europe-docker.pkg.dev/dk-gg-rgstry/base/php-cli:dev"
 parameters:
   run_workflow_generate:
@@ -157,28 +157,18 @@ workflows:
           context: *context-cloud
           filters:
             branches:
-              only: /^v[0-9]+\.[0-9]+$/
+              only: *branch-filter-publish
   *workflow-name-publish :
     jobs:
       - *job-name-publish :
           context: *context-cloud
           filters:
             branches:
-              only: /^v[0-9]+\.[0-9]+$/
+              only: *branch-filter-publish
       - *job-name-mirror :
           context: *context-cloud
           requires:
             - *job-name-publish
           filters:
             branches:
-              only: /^v[0-9]+\.[0-9]+$/
-  *workflow-name-mirroring :
-    # TODO: remove
-    jobs:
-      - *job-name-mirror :
-          context: *context-cloud
-          filters:
-            branches:
-              only: /^(v)(0|[1-9]\d*)$/
-            tags:
-              only: /^(v)(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
+              only: *branch-filter-publish
