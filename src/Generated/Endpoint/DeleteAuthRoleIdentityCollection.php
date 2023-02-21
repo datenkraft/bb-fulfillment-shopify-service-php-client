@@ -4,6 +4,15 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Endpoin
 
 class DeleteAuthRoleIdentityCollection extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\BaseEndpoint implements \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\Endpoint
 {
+    /**
+     * Delete one or more role to identity assignments in this resource server
+     *
+     * @param \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     */
+    public function __construct(array $requestBody)
+    {
+        $this->body = $requestBody;
+    }
     use \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\EndpointTrait;
     public function getMethod() : string
     {
@@ -15,6 +24,9 @@ class DeleteAuthRoleIdentityCollection extends \Datenkraft\Backbone\Client\Fulfi
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
+        if (is_array($this->body) and isset($this->body[0]) and $this->body[0] instanceof \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthRoleIdentityResource) {
+            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+        }
         return array(array(), null);
     }
     public function getExtraHeaders() : array
