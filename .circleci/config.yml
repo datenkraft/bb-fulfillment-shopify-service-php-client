@@ -139,8 +139,22 @@ jobs:
               circleci-agent step halt
             fi
       - run:
+          name: Prepare ssh config
+          command: |
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts
+            touch ~/.ssh/bitbucket_private_key
+            echo $BITBUCKET_PRIVATE_SSH_KEY | base64 -d >> ~/.ssh/bitbucket_private_key
+            chmod 400 ~/.ssh/bitbucket_private_key
+      - run:
           name: Bump git tag to next minor and push new tag
           command: |
+            git config user.email $BITBUCKET_USER_EMAIL
+            git config user.name $BITBUCKET_USER_NAME
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/bitbucket_private_key
+            
             lastTag=$(git describe --tags --abbrev=0)
             echo "Previous version: ${lastTag}"
             nextTag=$(echo $lastTag | awk -F. '{OFS="."; $NF+=1; print $0}')
