@@ -2,13 +2,13 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Endpoint;
 
-class GetOpenApiInFormat extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\BaseEndpoint implements \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\Endpoint
+class GetChangelogInFormat extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\BaseEndpoint implements \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\Endpoint
 {
     protected $format;
     /**
-     * Get the openapi documentation in the specified format
+     * Get the changelog in the specified format
      *
-     * @param string $format Openapi file format
+     * @param string $format Changelog file format
      */
     public function __construct(string $format)
     {
@@ -21,7 +21,7 @@ class GetOpenApiInFormat extends \Datenkraft\Backbone\Client\FulfillmentShopifyS
     }
     public function getUri() : string
     {
-        return str_replace(array('{format}'), array($this->format), '/docs/openapi.{format}');
+        return str_replace(array('{format}'), array($this->format), '/docs/changelog.{format}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
@@ -30,6 +30,8 @@ class GetOpenApiInFormat extends \Datenkraft\Backbone\Client\FulfillmentShopifyS
     /**
      * {@inheritdoc}
      *
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatNotFoundException
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatBadRequestException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\UnexpectedStatusCodeException
      *
      * @return null
@@ -38,6 +40,12 @@ class GetOpenApiInFormat extends \Datenkraft\Backbone\Client\FulfillmentShopifyS
     {
         if (200 === $status) {
             return null;
+        }
+        if (404 === $status) {
+            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatNotFoundException();
+        }
+        if (400 === $status) {
+            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatBadRequestException();
         }
         throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\UnexpectedStatusCodeException($status, $body);
     }
