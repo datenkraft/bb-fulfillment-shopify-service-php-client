@@ -17,7 +17,7 @@ parameters:
 jobs:
   *job-name-trigger-client-generators:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/base:current-22.04
     steps:
       - run:
           name: Check requirements
@@ -46,7 +46,8 @@ jobs:
             
             set -x
             for branch in $branches; do
-              curl -X POST https://circleci.com/api/v2/project/bitbucket/datenkraft/${CIRCLE_PROJECT_REPONAME}/pipeline \
+              curl --fail-with-body --no-progress-meter \
+                -X POST https://circleci.com/api/v2/project/bitbucket/datenkraft/${CIRCLE_PROJECT_REPONAME}/pipeline \
                 --header "Circle-Token: $CIRCLE_TOKEN" \
                 --header "content-type: application/json" \
                 --data "{\"branch\":\"${branch}\", \"parameters\":{\"run_workflow_generate\":true, \"openapi_url\":\"<<pipeline.parameters.openapi_url>>\"}}"
