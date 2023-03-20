@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Download the new openapi.json
           command: |
-            curl -s -o openapi.json <<pipeline.parameters.openapi_url>>
+            curl -sS --fail-with-body -o openapi.json <<pipeline.parameters.openapi_url>>
       - run:
           name: Check for openapi changes
           command: |
