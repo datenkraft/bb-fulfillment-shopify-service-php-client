@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class CollectionPagination
+class CollectionPagination extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * The page contained in this collection.
      *
@@ -16,6 +24,13 @@ class CollectionPagination
      * @var int
      */
     protected $pageSize;
+    /**
+    * The total number of items in the collection.\
+    Note: This can be null depending on the used paginationMode.
+    *
+    * @var int|null
+    */
+    protected $totalCount;
     /**
      * The page contained in this collection.
      *
@@ -34,6 +49,7 @@ class CollectionPagination
      */
     public function setPage(int $page) : self
     {
+        $this->initialized['page'] = true;
         $this->page = $page;
         return $this;
     }
@@ -55,7 +71,32 @@ class CollectionPagination
      */
     public function setPageSize(int $pageSize) : self
     {
+        $this->initialized['pageSize'] = true;
         $this->pageSize = $pageSize;
+        return $this;
+    }
+    /**
+    * The total number of items in the collection.\
+    Note: This can be null depending on the used paginationMode.
+    *
+    * @return int|null
+    */
+    public function getTotalCount() : ?int
+    {
+        return $this->totalCount;
+    }
+    /**
+    * The total number of items in the collection.\
+    Note: This can be null depending on the used paginationMode.
+    *
+    * @param int|null $totalCount
+    *
+    * @return self
+    */
+    public function setTotalCount(?int $totalCount) : self
+    {
+        $this->initialized['totalCount'] = true;
+        $this->totalCount = $totalCount;
         return $this;
     }
 }

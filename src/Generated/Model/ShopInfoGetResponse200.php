@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ShopInfoGetResponse200
+class ShopInfoGetResponse200 extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ShopCode
      *
@@ -46,6 +54,7 @@ class ShopInfoGetResponse200
      */
     public function setShopCode(string $shopCode) : self
     {
+        $this->initialized['shopCode'] = true;
         $this->shopCode = $shopCode;
         return $this;
     }
@@ -67,6 +76,7 @@ class ShopInfoGetResponse200
      */
     public function setExternalHmac(string $externalHmac) : self
     {
+        $this->initialized['externalHmac'] = true;
         $this->externalHmac = $externalHmac;
         return $this;
     }
@@ -88,6 +98,7 @@ class ShopInfoGetResponse200
      */
     public function setIsLinkedToStagingTestShop(bool $isLinkedToStagingTestShop) : self
     {
+        $this->initialized['isLinkedToStagingTestShop'] = true;
         $this->isLinkedToStagingTestShop = $isLinkedToStagingTestShop;
         return $this;
     }
@@ -109,6 +120,7 @@ class ShopInfoGetResponse200
      */
     public function setIsShopInSandboxMode(bool $isShopInSandboxMode) : self
     {
+        $this->initialized['isShopInSandboxMode'] = true;
         $this->isShopInSandboxMode = $isShopInSandboxMode;
         return $this;
     }

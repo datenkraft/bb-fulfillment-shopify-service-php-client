@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ShopifyInventoryItem
+class ShopifyInventoryItem extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * id
      *
@@ -34,6 +42,7 @@ class ShopifyInventoryItem
      */
     public function setId(float $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -55,6 +64,7 @@ class ShopifyInventoryItem
      */
     public function setProductNumber(string $productNumber) : self
     {
+        $this->initialized['productNumber'] = true;
         $this->productNumber = $productNumber;
         return $this;
     }

@@ -4,6 +4,7 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normali
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\CheckArray;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,11 +17,12 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
         return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ShopInfoGetResponse200';
     }
-    public function supportsNormalization($data, $format = null) : bool
+    public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
         return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ShopInfoGetResponse200';
     }
@@ -41,15 +43,24 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
         }
         if (\array_key_exists('shopCode', $data)) {
             $object->setShopCode($data['shopCode']);
+            unset($data['shopCode']);
         }
         if (\array_key_exists('externalHmac', $data)) {
             $object->setExternalHmac($data['externalHmac']);
+            unset($data['externalHmac']);
         }
         if (\array_key_exists('isLinkedToStagingTestShop', $data)) {
             $object->setIsLinkedToStagingTestShop($data['isLinkedToStagingTestShop']);
+            unset($data['isLinkedToStagingTestShop']);
         }
         if (\array_key_exists('isShopInSandboxMode', $data)) {
             $object->setIsShopInSandboxMode($data['isShopInSandboxMode']);
+            unset($data['isShopInSandboxMode']);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
         }
         return $object;
     }
@@ -59,17 +70,22 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getShopCode()) {
+        if ($object->isInitialized('shopCode') && null !== $object->getShopCode()) {
             $data['shopCode'] = $object->getShopCode();
         }
-        if (null !== $object->getExternalHmac()) {
+        if ($object->isInitialized('externalHmac') && null !== $object->getExternalHmac()) {
             $data['externalHmac'] = $object->getExternalHmac();
         }
-        if (null !== $object->getIsLinkedToStagingTestShop()) {
+        if ($object->isInitialized('isLinkedToStagingTestShop') && null !== $object->getIsLinkedToStagingTestShop()) {
             $data['isLinkedToStagingTestShop'] = $object->getIsLinkedToStagingTestShop();
         }
-        if (null !== $object->getIsShopInSandboxMode()) {
+        if ($object->isInitialized('isShopInSandboxMode') && null !== $object->getIsShopInSandboxMode()) {
             $data['isShopInSandboxMode'] = $object->getIsShopInSandboxMode();
+        }
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
         }
         return $data;
     }

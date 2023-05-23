@@ -4,6 +4,7 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normali
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\CheckArray;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,11 +17,12 @@ class AuthRoleIdentityResourceNormalizer implements DenormalizerInterface, Norma
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
         return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\AuthRoleIdentityResource';
     }
-    public function supportsNormalization($data, $format = null) : bool
+    public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
         return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\AuthRoleIdentityResource';
     }
@@ -41,9 +43,16 @@ class AuthRoleIdentityResourceNormalizer implements DenormalizerInterface, Norma
         }
         if (\array_key_exists('roleCode', $data)) {
             $object->setRoleCode($data['roleCode']);
+            unset($data['roleCode']);
         }
         if (\array_key_exists('identityId', $data)) {
             $object->setIdentityId($data['identityId']);
+            unset($data['identityId']);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
         }
         return $object;
     }
@@ -55,6 +64,11 @@ class AuthRoleIdentityResourceNormalizer implements DenormalizerInterface, Norma
         $data = array();
         $data['roleCode'] = $object->getRoleCode();
         $data['identityId'] = $object->getIdentityId();
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
+        }
         return $data;
     }
 }

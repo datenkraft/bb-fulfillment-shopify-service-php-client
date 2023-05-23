@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionShopToggleSandboxModePostBody
+class ActionShopToggleSandboxModePostBody extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * shopifyShopDomain
      *
@@ -28,6 +36,7 @@ class ActionShopToggleSandboxModePostBody
      */
     public function setShopifyShopDomain(string $shopifyShopDomain) : self
     {
+        $this->initialized['shopifyShopDomain'] = true;
         $this->shopifyShopDomain = $shopifyShopDomain;
         return $this;
     }

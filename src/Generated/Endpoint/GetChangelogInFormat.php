@@ -36,16 +36,18 @@ class GetChangelogInFormat extends \Datenkraft\Backbone\Client\FulfillmentShopif
      *
      * @return null
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
             return null;
         }
         if (404 === $status) {
-            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatNotFoundException();
+            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatNotFoundException($response);
         }
         if (400 === $status) {
-            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatBadRequestException();
+            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetChangelogInFormatBadRequestException($response);
         }
         throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\UnexpectedStatusCodeException($status, $body);
     }

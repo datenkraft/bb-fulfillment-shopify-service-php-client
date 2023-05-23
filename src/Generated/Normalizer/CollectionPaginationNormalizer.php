@@ -4,6 +4,7 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normali
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\CheckArray;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,11 +17,12 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
         return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\CollectionPagination';
     }
-    public function supportsNormalization($data, $format = null) : bool
+    public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
         return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\CollectionPagination';
     }
@@ -41,9 +43,23 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
         }
         if (\array_key_exists('page', $data)) {
             $object->setPage($data['page']);
+            unset($data['page']);
         }
         if (\array_key_exists('pageSize', $data)) {
             $object->setPageSize($data['pageSize']);
+            unset($data['pageSize']);
+        }
+        if (\array_key_exists('totalCount', $data) && $data['totalCount'] !== null) {
+            $object->setTotalCount($data['totalCount']);
+            unset($data['totalCount']);
+        }
+        elseif (\array_key_exists('totalCount', $data) && $data['totalCount'] === null) {
+            $object->setTotalCount(null);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
         }
         return $object;
     }
@@ -53,11 +69,19 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getPage()) {
+        if ($object->isInitialized('page') && null !== $object->getPage()) {
             $data['page'] = $object->getPage();
         }
-        if (null !== $object->getPageSize()) {
+        if ($object->isInitialized('pageSize') && null !== $object->getPageSize()) {
             $data['pageSize'] = $object->getPageSize();
+        }
+        if ($object->isInitialized('totalCount') && null !== $object->getTotalCount()) {
+            $data['totalCount'] = $object->getTotalCount();
+        }
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
         }
         return $data;
     }

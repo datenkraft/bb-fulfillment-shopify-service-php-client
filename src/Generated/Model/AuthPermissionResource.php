@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class AuthPermissionResource
+class AuthPermissionResource extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Permission Code
      *
@@ -34,6 +42,7 @@ class AuthPermissionResource
      */
     public function setPermissionCode(string $permissionCode) : self
     {
+        $this->initialized['permissionCode'] = true;
         $this->permissionCode = $permissionCode;
         return $this;
     }
@@ -55,6 +64,7 @@ class AuthPermissionResource
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }

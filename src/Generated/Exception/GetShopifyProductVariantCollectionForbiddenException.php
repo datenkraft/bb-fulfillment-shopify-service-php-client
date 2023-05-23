@@ -8,13 +8,22 @@ class GetShopifyProductVariantCollectionForbiddenException extends ForbiddenExce
      * @var \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse
      */
     private $errorResponse;
-    public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse)
+    /**
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    private $response;
+    public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
         parent::__construct('Forbidden');
         $this->errorResponse = $errorResponse;
+        $this->response = $response;
     }
     public function getErrorResponse() : \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse
     {
         return $this->errorResponse;
+    }
+    public function getResponse() : \Psr\Http\Message\ResponseInterface
+    {
+        return $this->response;
     }
 }

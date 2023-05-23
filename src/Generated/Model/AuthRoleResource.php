@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class AuthRoleResource
+class AuthRoleResource extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Role Code
      *
@@ -34,6 +42,7 @@ class AuthRoleResource
      */
     public function setRoleCode(string $roleCode) : self
     {
+        $this->initialized['roleCode'] = true;
         $this->roleCode = $roleCode;
         return $this;
     }
@@ -55,6 +64,7 @@ class AuthRoleResource
      */
     public function setName(string $name) : self
     {
+        $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
     }

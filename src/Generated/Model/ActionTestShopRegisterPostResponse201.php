@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionTestShopRegisterPostResponse201
+class ActionTestShopRegisterPostResponse201 extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * ShopCode
      *
@@ -28,6 +36,7 @@ class ActionTestShopRegisterPostResponse201
      */
     public function setShopCode(string $shopCode) : self
     {
+        $this->initialized['shopCode'] = true;
         $this->shopCode = $shopCode;
         return $this;
     }

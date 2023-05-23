@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ShopifyProductVariant
+class ShopifyProductVariant extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * id
      *
@@ -52,6 +60,7 @@ class ShopifyProductVariant
      */
     public function setId(float $id) : self
     {
+        $this->initialized['id'] = true;
         $this->id = $id;
         return $this;
     }
@@ -73,6 +82,7 @@ class ShopifyProductVariant
      */
     public function setInventoryItemId(float $inventoryItemId) : self
     {
+        $this->initialized['inventoryItemId'] = true;
         $this->inventoryItemId = $inventoryItemId;
         return $this;
     }
@@ -94,6 +104,7 @@ class ShopifyProductVariant
      */
     public function setProductId(float $productId) : self
     {
+        $this->initialized['productId'] = true;
         $this->productId = $productId;
         return $this;
     }
@@ -115,6 +126,7 @@ class ShopifyProductVariant
      */
     public function setTitle(string $title) : self
     {
+        $this->initialized['title'] = true;
         $this->title = $title;
         return $this;
     }
@@ -136,6 +148,7 @@ class ShopifyProductVariant
      */
     public function setProductNumber(string $productNumber) : self
     {
+        $this->initialized['productNumber'] = true;
         $this->productNumber = $productNumber;
         return $this;
     }

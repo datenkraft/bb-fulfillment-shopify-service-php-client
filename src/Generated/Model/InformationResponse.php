@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class InformationResponse
+class InformationResponse extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * information
      *
@@ -28,6 +36,7 @@ class InformationResponse
      */
     public function setInformation(array $information) : self
     {
+        $this->initialized['information'] = true;
         $this->information = $information;
         return $this;
     }

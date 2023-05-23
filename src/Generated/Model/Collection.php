@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class Collection
+class Collection extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * 
      *
@@ -13,7 +21,7 @@ class Collection
     /**
      * 
      *
-     * @var mixed
+     * @var mixed[]
      */
     protected $data;
     /**
@@ -34,27 +42,29 @@ class Collection
      */
     public function setPagination(CollectionPagination $pagination) : self
     {
+        $this->initialized['pagination'] = true;
         $this->pagination = $pagination;
         return $this;
     }
     /**
      * 
      *
-     * @return mixed
+     * @return mixed[]
      */
-    public function getData()
+    public function getData() : iterable
     {
         return $this->data;
     }
     /**
      * 
      *
-     * @param mixed $data
+     * @param mixed[] $data
      *
      * @return self
      */
-    public function setData($data) : self
+    public function setData(iterable $data) : self
     {
+        $this->initialized['data'] = true;
         $this->data = $data;
         return $this;
     }
