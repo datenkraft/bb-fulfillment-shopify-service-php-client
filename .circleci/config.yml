@@ -123,6 +123,7 @@ jobs:
             ssh-keyscan -H github.com >> ~/.ssh/known_hosts
             git remote add github git@github.com:datenkraft/${CIRCLE_PROJECT_REPONAME}.git
             git push github
+            git push github --tags
   *job-name-publish :
     executor: git
     steps:
