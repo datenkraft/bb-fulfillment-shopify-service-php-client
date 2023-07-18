@@ -1,0 +1,2 @@
+include:
+  - local: cicd/workflows/client-publish/main.yml
