@@ -11,18 +11,18 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class CollectionPaginationNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class AuthPermissionRoleResourceNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
     public function supportsDenormalization($data, $type, $format = null) : bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\CollectionPagination';
+        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\AuthPermissionRoleResource';
     }
     public function supportsNormalization($data, $format = null) : bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\CollectionPagination';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\AuthPermissionRoleResource';
     }
     /**
      * @return mixed
@@ -35,21 +35,15 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\CollectionPagination();
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthPermissionRoleResource();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('page', $data)) {
-            $object->setPage($data['page']);
+        if (\array_key_exists('permissionCode', $data)) {
+            $object->setPermissionCode($data['permissionCode']);
         }
-        if (\array_key_exists('pageSize', $data)) {
-            $object->setPageSize($data['pageSize']);
-        }
-        if (\array_key_exists('totalCount', $data) && $data['totalCount'] !== null) {
-            $object->setTotalCount($data['totalCount']);
-        }
-        elseif (\array_key_exists('totalCount', $data) && $data['totalCount'] === null) {
-            $object->setTotalCount(null);
+        if (\array_key_exists('roleCode', $data)) {
+            $object->setRoleCode($data['roleCode']);
         }
         return $object;
     }
@@ -59,15 +53,8 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getPage()) {
-            $data['page'] = $object->getPage();
-        }
-        if (null !== $object->getPageSize()) {
-            $data['pageSize'] = $object->getPageSize();
-        }
-        if (null !== $object->getTotalCount()) {
-            $data['totalCount'] = $object->getTotalCount();
-        }
+        $data['permissionCode'] = $object->getPermissionCode();
+        $data['roleCode'] = $object->getRoleCode();
         return $data;
     }
 }
