@@ -12,6 +12,7 @@ publish-client:
     - env
     - git tag -l
   script:
+    - git checkout ${CI_COMMIT_BRANCH}
     - '## Check for changes'
     - |
       # find last annotated tag matching the current branch
