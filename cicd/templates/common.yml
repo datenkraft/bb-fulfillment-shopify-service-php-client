@@ -1,0 +1,8 @@
+.use-service-image:
+  image:
+    name: ${IMAGE_NAME}:${IMAGE_TAG_DEV}
+    entrypoint: [ '' ]
+    #pull_policy: always # @TODO define workflow to use tagged dev images. The images cached by the gitlab-runners are currently deleted once per day.
+
+.use-build-tools-base-image:
+  image: ${CI_REGISTRY}/datenkraft/global-gears/dk-gg-rgstry/build-tools/base:${BASE_IMAGE_TAG}
