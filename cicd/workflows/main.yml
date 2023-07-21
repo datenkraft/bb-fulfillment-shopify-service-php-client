@@ -1,0 +1,4 @@
+include:
+  - local: cicd/workflows/$run_workflow/main.yml
+    rules:
+      - if: $run_workflow
