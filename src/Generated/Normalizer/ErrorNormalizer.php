@@ -45,6 +45,13 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (\array_key_exists('message', $data)) {
             $object->setMessage($data['message']);
         }
+        if (\array_key_exists('references', $data)) {
+            $values = array();
+            foreach ($data['references'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorReferencesItem', 'json', $context);
+            }
+            $object->setReferences($values);
+        }
         return $object;
     }
     /**
@@ -55,6 +62,13 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         $data = array();
         $data['code'] = $object->getCode();
         $data['message'] = $object->getMessage();
+        if (null !== $object->getReferences()) {
+            $values = array();
+            foreach ($object->getReferences() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
+            $data['references'] = $values;
+        }
         return $data;
     }
 }
