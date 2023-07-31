@@ -49,9 +49,17 @@ class InformationNormalizer implements DenormalizerInterface, NormalizerInterfac
             $object->setMessage($data['message']);
             unset($data['message']);
         }
-        foreach ($data as $key => $value) {
+        if (\array_key_exists('references', $data)) {
+            $values = array();
+            foreach ($data['references'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorReferencesItem', 'json', $context);
+            }
+            $object->setReferences($values);
+            unset($data['references']);
+        }
+        foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value;
+                $object[$key] = $value_1;
             }
         }
         return $object;
@@ -64,9 +72,16 @@ class InformationNormalizer implements DenormalizerInterface, NormalizerInterfac
         $data = array();
         $data['code'] = $object->getCode();
         $data['message'] = $object->getMessage();
-        foreach ($object as $key => $value) {
+        if ($object->isInitialized('references') && null !== $object->getReferences()) {
+            $values = array();
+            foreach ($object->getReferences() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
+            $data['references'] = $values;
+        }
+        foreach ($object as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $data[$key] = $value;
+                $data[$key] = $value_1;
             }
         }
         return $data;
