@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class ErrorReferencesItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -20,11 +20,11 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
     use ValidatorTrait;
     public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\Error';
+        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorReferencesItem';
     }
     public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\Error';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorReferencesItem';
     }
     /**
      * @return mixed
@@ -37,29 +37,28 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Error();
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorReferencesItem();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('code', $data)) {
-            $object->setCode($data['code']);
-            unset($data['code']);
+        if (\array_key_exists('key', $data)) {
+            $object->setKey($data['key']);
+            unset($data['key']);
         }
-        if (\array_key_exists('message', $data)) {
-            $object->setMessage($data['message']);
-            unset($data['message']);
+        if (\array_key_exists('value', $data)) {
+            $object->setValue($data['value']);
+            unset($data['value']);
         }
-        if (\array_key_exists('references', $data)) {
-            $values = array();
-            foreach ($data['references'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorReferencesItem', 'json', $context);
-            }
-            $object->setReferences($values);
-            unset($data['references']);
+        if (\array_key_exists('fieldReference', $data) && $data['fieldReference'] !== null) {
+            $object->setFieldReference($data['fieldReference']);
+            unset($data['fieldReference']);
         }
-        foreach ($data as $key => $value_1) {
+        elseif (\array_key_exists('fieldReference', $data) && $data['fieldReference'] === null) {
+            $object->setFieldReference(null);
+        }
+        foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value_1;
+                $object[$key] = $value;
             }
         }
         return $object;
@@ -70,18 +69,18 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        $data['code'] = $object->getCode();
-        $data['message'] = $object->getMessage();
-        if ($object->isInitialized('references') && null !== $object->getReferences()) {
-            $values = array();
-            foreach ($object->getReferences() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
-            }
-            $data['references'] = $values;
+        if ($object->isInitialized('key') && null !== $object->getKey()) {
+            $data['key'] = $object->getKey();
         }
-        foreach ($object as $key => $value_1) {
+        if ($object->isInitialized('value') && null !== $object->getValue()) {
+            $data['value'] = $object->getValue();
+        }
+        if ($object->isInitialized('fieldReference') && null !== $object->getFieldReference()) {
+            $data['fieldReference'] = $object->getFieldReference();
+        }
+        foreach ($object as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
-                $data[$key] = $value_1;
+                $data[$key] = $value;
             }
         }
         return $data;

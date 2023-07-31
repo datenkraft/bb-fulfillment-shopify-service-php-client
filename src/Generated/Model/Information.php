@@ -25,6 +25,12 @@ class Information extends \ArrayObject
      */
     protected $message;
     /**
+     * References
+     *
+     * @var ErrorReferencesItem[]
+     */
+    protected $references;
+    /**
      * Code
      *
      * @return string
@@ -66,6 +72,28 @@ class Information extends \ArrayObject
     {
         $this->initialized['message'] = true;
         $this->message = $message;
+        return $this;
+    }
+    /**
+     * References
+     *
+     * @return ErrorReferencesItem[]
+     */
+    public function getReferences() : array
+    {
+        return $this->references;
+    }
+    /**
+     * References
+     *
+     * @param ErrorReferencesItem[] $references
+     *
+     * @return self
+     */
+    public function setReferences(array $references) : self
+    {
+        $this->initialized['references'] = true;
+        $this->references = $references;
         return $this;
     }
 }
