@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception;
 
-class DeleteAuthPermissionRoleCollectionNotFoundException extends NotFoundException
+class GetOpenApiInFormatBadRequestException extends BadRequestException
 {
     /**
      * @var \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse
@@ -14,7 +14,7 @@ class DeleteAuthPermissionRoleCollectionNotFoundException extends NotFoundExcept
     private $response;
     public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
-        parent::__construct('Not Found');
+        parent::__construct('Invalid format');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }
