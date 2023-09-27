@@ -2098,9 +2098,10 @@
                         "type": "string"
                     },
                     "timestamp": {
-                        "description": "The timestamp of the action.",
+                        "description": "The timestamp of the action. Format in ISO 8601.",
                         "type": "string",
-                        "format": "date-time"
+                        "format": "date-time",
+                        "example": "2023-01-01T00:00:00+00:00"
                     }
                 },
                 "type": "object"
