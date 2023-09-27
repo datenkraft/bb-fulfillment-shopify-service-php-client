@@ -61,7 +61,7 @@ class AuditLog extends \ArrayObject
      */
     protected $oauthClientId;
     /**
-     * The timestamp of the action.
+     * The timestamp of the action. Format in ISO 8601.
      *
      * @var \DateTime
      */
@@ -243,7 +243,7 @@ class AuditLog extends \ArrayObject
         return $this;
     }
     /**
-     * The timestamp of the action.
+     * The timestamp of the action. Format in ISO 8601.
      *
      * @return \DateTime
      */
@@ -252,7 +252,7 @@ class AuditLog extends \ArrayObject
         return $this->timestamp;
     }
     /**
-     * The timestamp of the action.
+     * The timestamp of the action. Format in ISO 8601.
      *
      * @param \DateTime $timestamp
      *
