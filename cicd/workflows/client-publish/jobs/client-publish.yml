@@ -87,7 +87,7 @@ publish-client:
     - '## Setup GitHub SSH access for git'
     - mkdir -p ~/.ssh
     - touch ~/.ssh/known_hosts
-    - ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+    - ssh-keyscan -H -T 30 github.com >> ~/.ssh/known_hosts
     - echo ${GITHUB_SSH_PRIVATE_KEY} | base64 -d > ~/.ssh/github_private_key
     - chmod 400 ~/.ssh/github_private_key
     - eval "$(ssh-agent -s)"
