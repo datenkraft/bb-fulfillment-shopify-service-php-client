@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception;
 
-class GetShopifyInventoryItemCollectionNotFoundException extends NotFoundException
+class TestShopResetUnauthorizedException extends UnauthorizedException
 {
     /**
      * @var \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse
@@ -14,7 +14,7 @@ class GetShopifyInventoryItemCollectionNotFoundException extends NotFoundExcepti
     private $response;
     public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
-        parent::__construct('Not Found');
+        parent::__construct('Unauthorized');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }

@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionShopToggleSandboxModePostResponse201 extends \ArrayObject
+class ActionTestShopRegisterPostResponse200 extends \ArrayObject
 {
     /**
      * @var array
