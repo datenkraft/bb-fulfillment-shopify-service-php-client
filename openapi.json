@@ -2,12 +2,12 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Shopify Fulfillment Service",
-        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-service-sy.conqore.niceshops.com\/v1\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Shopify Fulfillment Service PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-shopify-service-php-client)",
+        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-service-sy.steve.niceshops.com\/v1\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Shopify Fulfillment Service PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-shopify-service-php-client)",
         "version": "1.0.0"
     },
     "servers": [
         {
-            "url": "https://fulfillment-service-sy.conqore.niceshops.com/v1",
+            "url": "https://fulfillment-service-sy.steve.niceshops.com/v1",
             "description": "Production Server"
         }
     ],
@@ -2540,7 +2540,7 @@
                 "description": "OAuth2 Authorization",
                 "flows": {
                     "clientCredentials": {
-                        "tokenUrl": "https://authentication-api.conqore.niceshops.com/oauth/token",
+                        "tokenUrl": "https://authentication-api.steve.niceshops.com/oauth/token",
                         "refreshUrl": "UNDEFINED",
                         "scopes": {}
                     }
