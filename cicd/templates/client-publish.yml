@@ -1,0 +1,25 @@
+.mirror-to-github:
+  stage: publish
+  extends:
+    - .use-service-image
+  variables:
+    GIT_DEPTH: 0
+    GIT_STRATEGY: 'clone'
+  before_script:
+    - git config --global --add safe.directory ${CI_PROJECT_DIR}
+    - ls -al
+    - env
+    - git tag -l
+  script:
+    - echo "Mirroring to https://github.com/datenkraft/${CI_PROJECT_NAME}"
+    - '## Setup GitHub SSH access for git'
+    - mkdir -p ~/.ssh
+    - touch ~/.ssh/known_hosts
+    - cat ${GITHUB_SSH_KNOWN_HOSTS} >> ~/.ssh/known_hosts
+    - echo ${GITHUB_SSH_PRIVATE_KEY} | base64 -d > ~/.ssh/github_private_key
+    - chmod 400 ~/.ssh/github_private_key
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/github_private_key
+    - git remote add github git@github.com:datenkraft/${CI_PROJECT_NAME}.git
+    - '## Mirror the repository tags to Github'
+    - git push github --tags
