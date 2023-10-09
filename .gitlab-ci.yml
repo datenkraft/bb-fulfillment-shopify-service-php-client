@@ -19,5 +19,6 @@ dummy_job:
   stage: .pre
   script:
     - echo 'This job should never run'
+    - exit 1
   rules:
     - when: never
