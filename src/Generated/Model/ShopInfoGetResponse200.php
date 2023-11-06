@@ -37,6 +37,12 @@ class ShopInfoGetResponse200 extends \ArrayObject
      */
     protected $isShopInSandboxMode;
     /**
+     * IsCreateTestProductsInitialized
+     *
+     * @var bool
+     */
+    protected $isCreateTestProductsInitialized;
+    /**
      * ShopCode
      *
      * @return string
@@ -122,6 +128,28 @@ class ShopInfoGetResponse200 extends \ArrayObject
     {
         $this->initialized['isShopInSandboxMode'] = true;
         $this->isShopInSandboxMode = $isShopInSandboxMode;
+        return $this;
+    }
+    /**
+     * IsCreateTestProductsInitialized
+     *
+     * @return bool
+     */
+    public function getIsCreateTestProductsInitialized() : bool
+    {
+        return $this->isCreateTestProductsInitialized;
+    }
+    /**
+     * IsCreateTestProductsInitialized
+     *
+     * @param bool $isCreateTestProductsInitialized
+     *
+     * @return self
+     */
+    public function setIsCreateTestProductsInitialized(bool $isCreateTestProductsInitialized) : self
+    {
+        $this->initialized['isCreateTestProductsInitialized'] = true;
+        $this->isCreateTestProductsInitialized = $isCreateTestProductsInitialized;
         return $this;
     }
 }
