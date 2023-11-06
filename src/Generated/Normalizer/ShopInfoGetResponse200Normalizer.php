@@ -57,6 +57,10 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
             $object->setIsShopInSandboxMode($data['isShopInSandboxMode']);
             unset($data['isShopInSandboxMode']);
         }
+        if (\array_key_exists('isCreateTestProductsInitialized', $data)) {
+            $object->setIsCreateTestProductsInitialized($data['isCreateTestProductsInitialized']);
+            unset($data['isCreateTestProductsInitialized']);
+        }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $object[$key] = $value;
@@ -81,6 +85,9 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
         }
         if ($object->isInitialized('isShopInSandboxMode') && null !== $object->getIsShopInSandboxMode()) {
             $data['isShopInSandboxMode'] = $object->getIsShopInSandboxMode();
+        }
+        if ($object->isInitialized('isCreateTestProductsInitialized') && null !== $object->getIsCreateTestProductsInitialized()) {
+            $data['isCreateTestProductsInitialized'] = $object->getIsCreateTestProductsInitialized();
         }
         foreach ($object as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
