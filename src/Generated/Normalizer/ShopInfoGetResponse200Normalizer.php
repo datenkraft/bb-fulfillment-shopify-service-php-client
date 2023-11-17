@@ -61,6 +61,10 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
             $object->setIsCreateTestProductsInitialized($data['isCreateTestProductsInitialized']);
             unset($data['isCreateTestProductsInitialized']);
         }
+        if (\array_key_exists('isSessionInvalid', $data)) {
+            $object->setIsSessionInvalid($data['isSessionInvalid']);
+            unset($data['isSessionInvalid']);
+        }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $object[$key] = $value;
@@ -88,6 +92,9 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
         }
         if ($object->isInitialized('isCreateTestProductsInitialized') && null !== $object->getIsCreateTestProductsInitialized()) {
             $data['isCreateTestProductsInitialized'] = $object->getIsCreateTestProductsInitialized();
+        }
+        if ($object->isInitialized('isSessionInvalid') && null !== $object->getIsSessionInvalid()) {
+            $data['isSessionInvalid'] = $object->getIsSessionInvalid();
         }
         foreach ($object as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

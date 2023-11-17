@@ -43,6 +43,12 @@ class ShopInfoGetResponse200 extends \ArrayObject
      */
     protected $isCreateTestProductsInitialized;
     /**
+     * IsSessionInvalid
+     *
+     * @var bool
+     */
+    protected $isSessionInvalid;
+    /**
      * ShopCode
      *
      * @return string
@@ -150,6 +156,28 @@ class ShopInfoGetResponse200 extends \ArrayObject
     {
         $this->initialized['isCreateTestProductsInitialized'] = true;
         $this->isCreateTestProductsInitialized = $isCreateTestProductsInitialized;
+        return $this;
+    }
+    /**
+     * IsSessionInvalid
+     *
+     * @return bool
+     */
+    public function getIsSessionInvalid() : bool
+    {
+        return $this->isSessionInvalid;
+    }
+    /**
+     * IsSessionInvalid
+     *
+     * @param bool $isSessionInvalid
+     *
+     * @return self
+     */
+    public function setIsSessionInvalid(bool $isSessionInvalid) : self
+    {
+        $this->initialized['isSessionInvalid'] = true;
+        $this->isSessionInvalid = $isSessionInvalid;
         return $this;
     }
 }
