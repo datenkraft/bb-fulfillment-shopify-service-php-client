@@ -2169,6 +2169,10 @@
                                         "isCreateTestProductsInitialized": {
                                             "description": "IsCreateTestProductsInitialized",
                                             "type": "boolean"
+                                        },
+                                        "isSessionInvalid": {
+                                            "description": "IsSessionInvalid",
+                                            "type": "boolean"
                                         }
                                     },
                                     "type": "object"
