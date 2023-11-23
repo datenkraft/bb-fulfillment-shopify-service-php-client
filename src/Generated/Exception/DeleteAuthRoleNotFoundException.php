@@ -14,7 +14,10 @@ class DeleteAuthRoleNotFoundException extends NotFoundException
     private $response;
     public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
-        parent::__construct('Not Found');
+        parent::__construct('Not Found
+
+Error codes:
+- DATA_NOT_FOUND: The requested data could not be found.');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }

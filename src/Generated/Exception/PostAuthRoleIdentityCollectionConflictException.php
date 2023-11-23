@@ -14,7 +14,10 @@ class PostAuthRoleIdentityCollectionConflictException extends ConflictException
     private $response;
     public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
-        parent::__construct('Conflict');
+        parent::__construct('Conflict
+
+Error codes:
+- DATA_ALREADY_EXISTS: A data conflict was detected.');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }
