@@ -26,7 +26,7 @@ class CollectionPagination extends \ArrayObject
     protected $pageSize;
     /**
     * The total number of items in the collection.\
-    Note: This can be null depending on the used paginationMode.
+    Note: This can be null depending on the used paginationMode
     *
     * @var int|null
     */
@@ -77,7 +77,7 @@ class CollectionPagination extends \ArrayObject
     }
     /**
     * The total number of items in the collection.\
-    Note: This can be null depending on the used paginationMode.
+    Note: This can be null depending on the used paginationMode
     *
     * @return int|null
     */
@@ -87,7 +87,7 @@ class CollectionPagination extends \ArrayObject
     }
     /**
     * The total number of items in the collection.\
-    Note: This can be null depending on the used paginationMode.
+    Note: This can be null depending on the used paginationMode
     *
     * @param int|null $totalCount
     *

@@ -3,7 +3,7 @@
     "info": {
         "title": "Shopify Fulfillment Service",
         "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-service-sy.steve.niceshops.com\/v1\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Shopify Fulfillment Service PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-shopify-service-php-client)",
-        "version": "1.0.0"
+        "version": "v1.stable"
     },
     "servers": [
         {
@@ -687,7 +687,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -742,7 +742,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -752,7 +752,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -762,7 +762,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -772,7 +772,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -834,7 +834,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -858,7 +858,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -868,7 +868,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -878,7 +878,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -936,7 +936,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -946,7 +946,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -956,7 +956,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -966,7 +966,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict",
+                        "description": "Conflict\n\nError codes:\n- DATA_ALREADY_EXISTS: A data conflict was detected.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -976,7 +976,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_PROCESSABLE: The given data is not processable.\n- DATA_NOT_UNIQUE: The given data is not unique.\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -986,7 +986,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1038,7 +1038,7 @@
                         "description": "No Content"
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1048,7 +1048,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1058,7 +1058,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1068,7 +1068,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_UNIQUE: The given data is not unique.\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1078,7 +1078,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1140,7 +1140,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1164,7 +1164,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1174,7 +1174,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1184,7 +1184,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1246,7 +1246,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1270,7 +1270,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1280,7 +1280,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1290,7 +1290,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1348,7 +1348,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1358,7 +1358,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1368,7 +1368,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1378,7 +1378,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict",
+                        "description": "Conflict\n\nError codes:\n- DATA_ALREADY_EXISTS: A data conflict was detected.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1388,7 +1388,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_PROCESSABLE: The given data is not processable.\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1398,7 +1398,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1450,7 +1450,7 @@
                         "description": "No Content"
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1460,7 +1460,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1470,7 +1470,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1480,7 +1480,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_UNIQUE: The given data is not unique.\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1490,7 +1490,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1552,7 +1552,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1576,7 +1576,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1586,7 +1586,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1596,7 +1596,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1657,7 +1657,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1667,7 +1667,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1677,7 +1677,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1687,7 +1687,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1756,7 +1756,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1766,7 +1766,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1776,7 +1776,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1786,7 +1786,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict",
+                        "description": "Conflict\n\nError codes:\n- DATA_ALREADY_EXISTS: A data conflict was detected.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1796,7 +1796,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1848,7 +1848,7 @@
                         "description": "No content"
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1858,7 +1858,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1868,7 +1868,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1878,7 +1878,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1947,7 +1947,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1957,7 +1957,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1967,7 +1967,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1977,7 +1977,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1987,7 +1987,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2111,7 +2111,7 @@
                         "description": "OK"
                     },
                     "400": {
-                        "description": "Invalid format",
+                        "description": "Invalid format\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2697,7 +2697,7 @@
                         "format": "int32"
                     },
                     "totalCount": {
-                        "description": "The total number of items in the collection.\\\nNote: This can be null depending on the used paginationMode.",
+                        "description": "The total number of items in the collection.\\\nNote: This can be null depending on the used paginationMode",
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
