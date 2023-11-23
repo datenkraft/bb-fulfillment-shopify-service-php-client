@@ -14,7 +14,10 @@ class PostAuthRoleIdentityCollectionForbiddenException extends ForbiddenExceptio
     private $response;
     public function __construct(\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
-        parent::__construct('Forbidden');
+        parent::__construct('Forbidden
+
+Error codes:
+- PERMISSIONS_MISSING: No authorization for the called action was found.');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }
