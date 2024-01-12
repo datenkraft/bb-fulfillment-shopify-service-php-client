@@ -26,6 +26,7 @@ class TestShopReset extends \Datenkraft\Backbone\Client\FulfillmentShopifyServic
      *
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetForbiddenException
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetUnprocessableEntityException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -43,6 +44,9 @@ class TestShopReset extends \Datenkraft\Backbone\Client\FulfillmentShopifyServic
         }
         if (is_null($contentType) === false && (403 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetForbiddenException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorResponse', 'json'), $response);
+        }
+        if (is_null($contentType) === false && (422 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+            throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetUnprocessableEntityException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorResponse', 'json'), $response);
         }
         if (is_null($contentType) === false && (500 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetInternalServerErrorException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorResponse', 'json'), $response);

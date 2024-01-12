@@ -98,6 +98,7 @@ class Client extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Gener
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetForbiddenException
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetUnprocessableEntityException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\TestShopResetInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -458,8 +459,8 @@ class Client extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Gener
     * @param array $queryParameters {
     *     @var string $shopifyShopDomain shopifyShopDomain
     *     @var string $filter[productNumbers] Filter for productNumber/productNumbers.
-       The maximum number of productNumbers allowed is 100.
-       The values must be separated by a comma.
+    The maximum number of productNumbers allowed is 100.
+    The values must be separated by a comma.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\GetShopifyProductVariantCollectionBadRequestException

@@ -13,13 +13,13 @@ class ActionShopToggleSandboxModePostResponse200 extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * ShopCode
+     * shopCode
      *
      * @var string
      */
     protected $shopCode;
     /**
-     * ShopCode
+     * shopCode
      *
      * @return string
      */
@@ -28,7 +28,7 @@ class ActionShopToggleSandboxModePostResponse200 extends \ArrayObject
         return $this->shopCode;
     }
     /**
-     * ShopCode
+     * shopCode
      *
      * @param string $shopCode
      *

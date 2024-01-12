@@ -10,8 +10,8 @@ class GetShopifyProductVariantCollection extends \Datenkraft\Backbone\Client\Ful
     * @param array $queryParameters {
     *     @var string $shopifyShopDomain shopifyShopDomain
     *     @var string $filter[productNumbers] Filter for productNumber/productNumbers.
-       The maximum number of productNumbers allowed is 100.
-       The values must be separated by a comma.
+    The maximum number of productNumbers allowed is 100.
+    The values must be separated by a comma.
     * }
     */
     public function __construct(array $queryParameters = array())

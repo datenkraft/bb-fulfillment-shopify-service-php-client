@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception;
 
-class PostActionShopCreateTestProductsUnprocessableEntityException extends UnprocessableEntityException
+class TestShopResetUnprocessableEntityException extends UnprocessableEntityException
 {
     /**
      * @var \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse
@@ -19,8 +19,7 @@ class PostActionShopCreateTestProductsUnprocessableEntityException extends Unpro
 Error codes:
 - DATA_NOT_PROCESSABLE: The given data is not processable.
 - DATA_NOT_FOUND: The requested data could not be found.
-- CREATE_TEST_PRODUCTS_INVALID_SHOP: Creation of test products is not available for the given shop .
-- CREATE_TEST_PRODUCTS_NOT_INITIALIZED: Action is not initialized for the given shop.');
+- TEST_SHOP_RESET_FAILED: Reset of the test shop failed.');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }
