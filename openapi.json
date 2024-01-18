@@ -2735,16 +2735,11 @@
                         "items": {
                             "properties": {
                                 "key": {
-                                    "description": "The key of the field causing the error",
+                                    "description": "The reference to the field causing the error",
                                     "type": "string"
                                 },
                                 "value": {
                                     "description": "The value of the field causing the error"
-                                },
-                                "fieldReference": {
-                                    "description": "The exact reference to the field causing the error",
-                                    "type": "string",
-                                    "nullable": true
                                 }
                             },
                             "type": "object"

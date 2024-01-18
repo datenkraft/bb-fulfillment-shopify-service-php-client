@@ -49,13 +49,6 @@ class ErrorReferencesItemNormalizer implements DenormalizerInterface, Normalizer
             $object->setValue($data['value']);
             unset($data['value']);
         }
-        if (\array_key_exists('fieldReference', $data) && $data['fieldReference'] !== null) {
-            $object->setFieldReference($data['fieldReference']);
-            unset($data['fieldReference']);
-        }
-        elseif (\array_key_exists('fieldReference', $data) && $data['fieldReference'] === null) {
-            $object->setFieldReference(null);
-        }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $object[$key] = $value;
@@ -74,9 +67,6 @@ class ErrorReferencesItemNormalizer implements DenormalizerInterface, Normalizer
         }
         if ($object->isInitialized('value') && null !== $object->getValue()) {
             $data['value'] = $object->getValue();
-        }
-        if ($object->isInitialized('fieldReference') && null !== $object->getFieldReference()) {
-            $data['fieldReference'] = $object->getFieldReference();
         }
         foreach ($object as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
