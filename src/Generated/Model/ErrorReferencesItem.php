@@ -13,7 +13,7 @@ class ErrorReferencesItem extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * The key of the field causing the error
+     * The reference to the field causing the error
      *
      * @var string
      */
@@ -25,13 +25,7 @@ class ErrorReferencesItem extends \ArrayObject
      */
     protected $value;
     /**
-     * The exact reference to the field causing the error
-     *
-     * @var string|null
-     */
-    protected $fieldReference;
-    /**
-     * The key of the field causing the error
+     * The reference to the field causing the error
      *
      * @return string
      */
@@ -40,7 +34,7 @@ class ErrorReferencesItem extends \ArrayObject
         return $this->key;
     }
     /**
-     * The key of the field causing the error
+     * The reference to the field causing the error
      *
      * @param string $key
      *
@@ -72,28 +66,6 @@ class ErrorReferencesItem extends \ArrayObject
     {
         $this->initialized['value'] = true;
         $this->value = $value;
-        return $this;
-    }
-    /**
-     * The exact reference to the field causing the error
-     *
-     * @return string|null
-     */
-    public function getFieldReference() : ?string
-    {
-        return $this->fieldReference;
-    }
-    /**
-     * The exact reference to the field causing the error
-     *
-     * @param string|null $fieldReference
-     *
-     * @return self
-     */
-    public function setFieldReference(?string $fieldReference) : self
-    {
-        $this->initialized['fieldReference'] = true;
-        $this->fieldReference = $fieldReference;
         return $this;
     }
 }
