@@ -1,0 +1,3 @@
+mirror-to-github:
+  extends:
+    - .mirror-to-github
