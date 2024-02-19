@@ -10,8 +10,7 @@ default:
 include:
   - local: cicd/variables/main.yml
   - local: cicd/templates/*.yml
-  - local: cicd/workflows/main.yml
-  - local: cicd/publish-branch/main.yml
+  - local: cicd/workflows/*/main.yml
 
 # The dummy_job is needed so GitLab does not complain that the pipeline contains no jobs.
 # This could happen if the includes above produce none.
