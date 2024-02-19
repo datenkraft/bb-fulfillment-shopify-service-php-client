@@ -1,4 +1,4 @@
 include:
   - local: cicd/workflows/client-generate/jobs/*.yml
     rules:
-      - if: $CI_COMMIT_BRANCH =~ '/^v[0-9]+\.[0-9]+$/'
+      - if: $run_workflow == "client_generate"
