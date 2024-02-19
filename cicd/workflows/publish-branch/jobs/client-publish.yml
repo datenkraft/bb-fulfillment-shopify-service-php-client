@@ -1,0 +1,9 @@
+publish-client:
+  extends:
+    - .publish-client
+
+mirror-to-github:
+  needs:
+    - publish-client
+  extends:
+    - .mirror-to-github
