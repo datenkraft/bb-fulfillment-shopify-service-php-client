@@ -1,4 +1,0 @@
-include:
-  - local: cicd/workflows/client-publish/jobs/*.yml
-    rules:
-      - if: $CI_COMMIT_BRANCH =~ '/^v[0-9]+\.[0-9]+$/'
