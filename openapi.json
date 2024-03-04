@@ -2385,7 +2385,7 @@
                         "name": "filter[productNumbers]",
                         "in": "query",
                         "description": "Filter for productNumber/productNumbers.\nThe maximum number of productNumbers allowed is 100.\nThe values must be separated by a comma.",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         },
