@@ -39,7 +39,7 @@ class GetShopifyProductVariantCollection extends \Datenkraft\Backbone\Client\Ful
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(array('shopifyShopDomain', 'filter[productNumbers]'));
-        $optionsResolver->setRequired(array('shopifyShopDomain', 'filter[productNumbers]'));
+        $optionsResolver->setRequired(array('shopifyShopDomain'));
         $optionsResolver->setDefaults(array());
         $optionsResolver->addAllowedTypes('shopifyShopDomain', array('string'));
         $optionsResolver->addAllowedTypes('filter[productNumbers]', array('string'));
