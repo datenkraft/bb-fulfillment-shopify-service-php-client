@@ -33,13 +33,13 @@ class ShopifyProductVariant extends \ArrayObject
     /**
      * title
      *
-     * @var string
+     * @var string|null
      */
     protected $title;
     /**
      * product number
      *
-     * @var string
+     * @var string|null
      */
     protected $productNumber;
     /**
@@ -111,20 +111,20 @@ class ShopifyProductVariant extends \ArrayObject
     /**
      * title
      *
-     * @return string
+     * @return string|null
      */
-    public function getTitle() : string
+    public function getTitle() : ?string
     {
         return $this->title;
     }
     /**
      * title
      *
-     * @param string $title
+     * @param string|null $title
      *
      * @return self
      */
-    public function setTitle(string $title) : self
+    public function setTitle(?string $title) : self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
@@ -133,20 +133,20 @@ class ShopifyProductVariant extends \ArrayObject
     /**
      * product number
      *
-     * @return string
+     * @return string|null
      */
-    public function getProductNumber() : string
+    public function getProductNumber() : ?string
     {
         return $this->productNumber;
     }
     /**
      * product number
      *
-     * @param string $productNumber
+     * @param string|null $productNumber
      *
      * @return self
      */
-    public function setProductNumber(string $productNumber) : self
+    public function setProductNumber(?string $productNumber) : self
     {
         $this->initialized['productNumber'] = true;
         $this->productNumber = $productNumber;
