@@ -62,13 +62,19 @@ class ShopifyProductVariantNormalizer implements DenormalizerInterface, Normaliz
             $object->setProductId($data['productId']);
             unset($data['productId']);
         }
-        if (\array_key_exists('title', $data)) {
+        if (\array_key_exists('title', $data) && $data['title'] !== null) {
             $object->setTitle($data['title']);
             unset($data['title']);
         }
-        if (\array_key_exists('productNumber', $data)) {
+        elseif (\array_key_exists('title', $data) && $data['title'] === null) {
+            $object->setTitle(null);
+        }
+        if (\array_key_exists('productNumber', $data) && $data['productNumber'] !== null) {
             $object->setProductNumber($data['productNumber']);
             unset($data['productNumber']);
+        }
+        elseif (\array_key_exists('productNumber', $data) && $data['productNumber'] === null) {
+            $object->setProductNumber(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

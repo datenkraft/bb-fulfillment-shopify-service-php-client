@@ -2864,11 +2864,13 @@
                     },
                     "title": {
                         "description": "title",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "productNumber": {
                         "description": "product number",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     }
                 },
                 "type": "object"
