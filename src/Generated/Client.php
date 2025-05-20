@@ -5,6 +5,22 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated;
 class Client extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Client\Client
 {
     /**
+     * Clear shop cache.
+     *
+     * @param null|\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostBody $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\ShopClearCacheUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\ShopClearCacheForbiddenException
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\ShopClearCacheInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostResponse200|\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function shopClearCache(?\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostBody $requestBody = null, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Endpoint\ShopClearCache($requestBody), $fetch);
+    }
+    /**
      * Create test products for a shop
      *
      * @param \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsPostBody $requestBody 
