@@ -5,7 +5,6 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normali
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\CheckArray;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -18,18 +17,15 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\AuditLog';
+        return $type === \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLog::class;
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\AuditLog';
+        return is_object($data) && get_class($data) === \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLog::class;
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -83,7 +79,7 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
             unset($data['oauthClientId']);
         }
         if (\array_key_exists('timestamp', $data)) {
-            $object->setTimestamp(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['timestamp']));
+            $object->setTimestamp(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['timestamp']));
             unset($data['timestamp']);
         }
         foreach ($data as $key => $value) {
@@ -93,44 +89,45 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
         return $object;
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = array();
-        if ($object->isInitialized('id') && null !== $object->getId()) {
-            $data['id'] = $object->getId();
+        $dataArray = [];
+        if ($data->isInitialized('id') && null !== $data->getId()) {
+            $dataArray['id'] = $data->getId();
         }
-        if ($object->isInitialized('endpoint') && null !== $object->getEndpoint()) {
-            $data['endpoint'] = $object->getEndpoint();
+        if ($data->isInitialized('endpoint') && null !== $data->getEndpoint()) {
+            $dataArray['endpoint'] = $data->getEndpoint();
         }
-        if ($object->isInitialized('version') && null !== $object->getVersion()) {
-            $data['version'] = $object->getVersion();
+        if ($data->isInitialized('version') && null !== $data->getVersion()) {
+            $dataArray['version'] = $data->getVersion();
         }
-        if ($object->isInitialized('identifier') && null !== $object->getIdentifier()) {
-            $data['identifier'] = $object->getIdentifier();
+        if ($data->isInitialized('identifier') && null !== $data->getIdentifier()) {
+            $dataArray['identifier'] = $data->getIdentifier();
         }
-        if ($object->isInitialized('content') && null !== $object->getContent()) {
-            $data['content'] = $object->getContent();
+        if ($data->isInitialized('content') && null !== $data->getContent()) {
+            $dataArray['content'] = $data->getContent();
         }
-        if ($object->isInitialized('confidentialContent') && null !== $object->getConfidentialContent()) {
-            $data['confidentialContent'] = $object->getConfidentialContent();
+        if ($data->isInitialized('confidentialContent') && null !== $data->getConfidentialContent()) {
+            $dataArray['confidentialContent'] = $data->getConfidentialContent();
         }
-        if ($object->isInitialized('requestId') && null !== $object->getRequestId()) {
-            $data['requestId'] = $object->getRequestId();
+        if ($data->isInitialized('requestId') && null !== $data->getRequestId()) {
+            $dataArray['requestId'] = $data->getRequestId();
         }
-        if ($object->isInitialized('oauthClientId') && null !== $object->getOauthClientId()) {
-            $data['oauthClientId'] = $object->getOauthClientId();
+        if ($data->isInitialized('oauthClientId') && null !== $data->getOauthClientId()) {
+            $dataArray['oauthClientId'] = $data->getOauthClientId();
         }
-        if ($object->isInitialized('timestamp') && null !== $object->getTimestamp()) {
-            $data['timestamp'] = $object->getTimestamp()->format('Y-m-d\\TH:i:sP');
+        if ($data->isInitialized('timestamp') && null !== $data->getTimestamp()) {
+            $dataArray['timestamp'] = $data->getTimestamp()?->format('Y-m-d\TH:i:sP');
         }
-        foreach ($object as $key => $value) {
+        foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
-                $data[$key] = $value;
+                $dataArray[$key] = $value;
             }
         }
-        return $data;
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLog::class => false];
     }
 }

@@ -7,8 +7,8 @@ class AuthPermissionRoleResource extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -29,7 +29,7 @@ class AuthPermissionRoleResource extends \ArrayObject
      *
      * @return string
      */
-    public function getPermissionCode() : string
+    public function getPermissionCode(): string
     {
         return $this->permissionCode;
     }
@@ -40,7 +40,7 @@ class AuthPermissionRoleResource extends \ArrayObject
      *
      * @return self
      */
-    public function setPermissionCode(string $permissionCode) : self
+    public function setPermissionCode(string $permissionCode): self
     {
         $this->initialized['permissionCode'] = true;
         $this->permissionCode = $permissionCode;
@@ -51,7 +51,7 @@ class AuthPermissionRoleResource extends \ArrayObject
      *
      * @return string
      */
-    public function getRoleCode() : string
+    public function getRoleCode(): string
     {
         return $this->roleCode;
     }
@@ -62,7 +62,7 @@ class AuthPermissionRoleResource extends \ArrayObject
      *
      * @return self
      */
-    public function setRoleCode(string $roleCode) : self
+    public function setRoleCode(string $roleCode): self
     {
         $this->initialized['roleCode'] = true;
         $this->roleCode = $roleCode;

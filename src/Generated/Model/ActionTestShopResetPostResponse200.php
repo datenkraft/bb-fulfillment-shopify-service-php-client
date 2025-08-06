@@ -7,8 +7,8 @@ class ActionTestShopResetPostResponse200 extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -23,7 +23,7 @@ class ActionTestShopResetPostResponse200 extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getDate() : \DateTime
+    public function getDate(): \DateTime
     {
         return $this->date;
     }
@@ -34,7 +34,7 @@ class ActionTestShopResetPostResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setDate(\DateTime $date) : self
+    public function setDate(\DateTime $date): self
     {
         $this->initialized['date'] = true;
         $this->date = $date;

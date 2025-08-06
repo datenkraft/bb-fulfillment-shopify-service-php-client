@@ -7,8 +7,8 @@ class CollectionPagination extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -36,7 +36,7 @@ class CollectionPagination extends \ArrayObject
      *
      * @return int
      */
-    public function getPage() : int
+    public function getPage(): int
     {
         return $this->page;
     }
@@ -47,7 +47,7 @@ class CollectionPagination extends \ArrayObject
      *
      * @return self
      */
-    public function setPage(int $page) : self
+    public function setPage(int $page): self
     {
         $this->initialized['page'] = true;
         $this->page = $page;
@@ -58,7 +58,7 @@ class CollectionPagination extends \ArrayObject
      *
      * @return int
      */
-    public function getPageSize() : int
+    public function getPageSize(): int
     {
         return $this->pageSize;
     }
@@ -69,7 +69,7 @@ class CollectionPagination extends \ArrayObject
      *
      * @return self
      */
-    public function setPageSize(int $pageSize) : self
+    public function setPageSize(int $pageSize): self
     {
         $this->initialized['pageSize'] = true;
         $this->pageSize = $pageSize;
@@ -81,7 +81,7 @@ class CollectionPagination extends \ArrayObject
     *
     * @return int|null
     */
-    public function getTotalCount() : ?int
+    public function getTotalCount(): ?int
     {
         return $this->totalCount;
     }
@@ -93,7 +93,7 @@ class CollectionPagination extends \ArrayObject
     *
     * @return self
     */
-    public function setTotalCount(?int $totalCount) : self
+    public function setTotalCount(?int $totalCount): self
     {
         $this->initialized['totalCount'] = true;
         $this->totalCount = $totalCount;

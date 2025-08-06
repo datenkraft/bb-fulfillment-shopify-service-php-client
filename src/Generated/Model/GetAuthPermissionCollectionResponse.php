@@ -7,8 +7,8 @@ class GetAuthPermissionCollectionResponse extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -21,7 +21,7 @@ class GetAuthPermissionCollectionResponse extends \ArrayObject
     /**
      * 
      *
-     * @var AuthPermissionResource[]
+     * @var list<AuthPermissionResource>
      */
     protected $data;
     /**
@@ -29,7 +29,7 @@ class GetAuthPermissionCollectionResponse extends \ArrayObject
      *
      * @return CollectionPagination
      */
-    public function getPagination() : CollectionPagination
+    public function getPagination(): CollectionPagination
     {
         return $this->pagination;
     }
@@ -40,7 +40,7 @@ class GetAuthPermissionCollectionResponse extends \ArrayObject
      *
      * @return self
      */
-    public function setPagination(CollectionPagination $pagination) : self
+    public function setPagination(CollectionPagination $pagination): self
     {
         $this->initialized['pagination'] = true;
         $this->pagination = $pagination;
@@ -49,20 +49,20 @@ class GetAuthPermissionCollectionResponse extends \ArrayObject
     /**
      * 
      *
-     * @return AuthPermissionResource[]
+     * @return list<AuthPermissionResource>
      */
-    public function getData() : array
+    public function getData(): array
     {
         return $this->data;
     }
     /**
      * 
      *
-     * @param AuthPermissionResource[] $data
+     * @param list<AuthPermissionResource> $data
      *
      * @return self
      */
-    public function setData(array $data) : self
+    public function setData(array $data): self
     {
         $this->initialized['data'] = true;
         $this->data = $data;

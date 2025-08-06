@@ -7,8 +7,8 @@ class ShopifyProductVariant extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -47,7 +47,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return float
      */
-    public function getId() : float
+    public function getId(): float
     {
         return $this->id;
     }
@@ -58,7 +58,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return self
      */
-    public function setId(float $id) : self
+    public function setId(float $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
@@ -69,7 +69,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return float
      */
-    public function getInventoryItemId() : float
+    public function getInventoryItemId(): float
     {
         return $this->inventoryItemId;
     }
@@ -80,7 +80,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return self
      */
-    public function setInventoryItemId(float $inventoryItemId) : self
+    public function setInventoryItemId(float $inventoryItemId): self
     {
         $this->initialized['inventoryItemId'] = true;
         $this->inventoryItemId = $inventoryItemId;
@@ -91,7 +91,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return float
      */
-    public function getProductId() : float
+    public function getProductId(): float
     {
         return $this->productId;
     }
@@ -102,7 +102,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return self
      */
-    public function setProductId(float $productId) : self
+    public function setProductId(float $productId): self
     {
         $this->initialized['productId'] = true;
         $this->productId = $productId;
@@ -113,7 +113,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return string|null
      */
-    public function getTitle() : ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -124,7 +124,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return self
      */
-    public function setTitle(?string $title) : self
+    public function setTitle(?string $title): self
     {
         $this->initialized['title'] = true;
         $this->title = $title;
@@ -135,7 +135,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return string|null
      */
-    public function getProductNumber() : ?string
+    public function getProductNumber(): ?string
     {
         return $this->productNumber;
     }
@@ -146,7 +146,7 @@ class ShopifyProductVariant extends \ArrayObject
      *
      * @return self
      */
-    public function setProductNumber(?string $productNumber) : self
+    public function setProductNumber(?string $productNumber): self
     {
         $this->initialized['productNumber'] = true;
         $this->productNumber = $productNumber;

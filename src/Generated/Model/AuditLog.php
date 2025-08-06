@@ -7,8 +7,8 @@ class AuditLog extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -71,7 +71,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
@@ -82,7 +82,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setId(string $id) : self
+    public function setId(string $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
@@ -93,7 +93,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string
      */
-    public function getEndpoint() : string
+    public function getEndpoint(): string
     {
         return $this->endpoint;
     }
@@ -104,7 +104,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setEndpoint(string $endpoint) : self
+    public function setEndpoint(string $endpoint): self
     {
         $this->initialized['endpoint'] = true;
         $this->endpoint = $endpoint;
@@ -115,7 +115,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string
      */
-    public function getVersion() : string
+    public function getVersion(): string
     {
         return $this->version;
     }
@@ -126,7 +126,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setVersion(string $version) : self
+    public function setVersion(string $version): self
     {
         $this->initialized['version'] = true;
         $this->version = $version;
@@ -137,7 +137,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string
      */
-    public function getIdentifier() : string
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
@@ -148,7 +148,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setIdentifier(string $identifier) : self
+    public function setIdentifier(string $identifier): self
     {
         $this->initialized['identifier'] = true;
         $this->identifier = $identifier;
@@ -159,7 +159,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string|null
      */
-    public function getContent() : ?string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -170,7 +170,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setContent(?string $content) : self
+    public function setContent(?string $content): self
     {
         $this->initialized['content'] = true;
         $this->content = $content;
@@ -181,7 +181,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string|null
      */
-    public function getConfidentialContent() : ?string
+    public function getConfidentialContent(): ?string
     {
         return $this->confidentialContent;
     }
@@ -192,7 +192,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setConfidentialContent(?string $confidentialContent) : self
+    public function setConfidentialContent(?string $confidentialContent): self
     {
         $this->initialized['confidentialContent'] = true;
         $this->confidentialContent = $confidentialContent;
@@ -203,7 +203,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string|null
      */
-    public function getRequestId() : ?string
+    public function getRequestId(): ?string
     {
         return $this->requestId;
     }
@@ -214,7 +214,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setRequestId(?string $requestId) : self
+    public function setRequestId(?string $requestId): self
     {
         $this->initialized['requestId'] = true;
         $this->requestId = $requestId;
@@ -225,7 +225,7 @@ class AuditLog extends \ArrayObject
      *
      * @return string
      */
-    public function getOauthClientId() : string
+    public function getOauthClientId(): string
     {
         return $this->oauthClientId;
     }
@@ -236,7 +236,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setOauthClientId(string $oauthClientId) : self
+    public function setOauthClientId(string $oauthClientId): self
     {
         $this->initialized['oauthClientId'] = true;
         $this->oauthClientId = $oauthClientId;
@@ -247,7 +247,7 @@ class AuditLog extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getTimestamp() : \DateTime
+    public function getTimestamp(): \DateTime
     {
         return $this->timestamp;
     }
@@ -258,7 +258,7 @@ class AuditLog extends \ArrayObject
      *
      * @return self
      */
-    public function setTimestamp(\DateTime $timestamp) : self
+    public function setTimestamp(\DateTime $timestamp): self
     {
         $this->initialized['timestamp'] = true;
         $this->timestamp = $timestamp;

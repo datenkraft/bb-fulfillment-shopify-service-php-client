@@ -7,8 +7,8 @@ class AuthRoleIdentityResource extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -29,7 +29,7 @@ class AuthRoleIdentityResource extends \ArrayObject
      *
      * @return string
      */
-    public function getRoleCode() : string
+    public function getRoleCode(): string
     {
         return $this->roleCode;
     }
@@ -40,7 +40,7 @@ class AuthRoleIdentityResource extends \ArrayObject
      *
      * @return self
      */
-    public function setRoleCode(string $roleCode) : self
+    public function setRoleCode(string $roleCode): self
     {
         $this->initialized['roleCode'] = true;
         $this->roleCode = $roleCode;
@@ -51,7 +51,7 @@ class AuthRoleIdentityResource extends \ArrayObject
      *
      * @return string
      */
-    public function getIdentityId() : string
+    public function getIdentityId(): string
     {
         return $this->identityId;
     }
@@ -62,7 +62,7 @@ class AuthRoleIdentityResource extends \ArrayObject
      *
      * @return self
      */
-    public function setIdentityId(string $identityId) : self
+    public function setIdentityId(string $identityId): self
     {
         $this->initialized['identityId'] = true;
         $this->identityId = $identityId;

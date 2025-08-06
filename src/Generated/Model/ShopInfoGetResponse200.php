@@ -7,8 +7,8 @@ class ShopInfoGetResponse200 extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -53,7 +53,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return string
      */
-    public function getShopCode() : string
+    public function getShopCode(): string
     {
         return $this->shopCode;
     }
@@ -64,7 +64,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setShopCode(string $shopCode) : self
+    public function setShopCode(string $shopCode): self
     {
         $this->initialized['shopCode'] = true;
         $this->shopCode = $shopCode;
@@ -75,7 +75,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return string
      */
-    public function getExternalHmac() : string
+    public function getExternalHmac(): string
     {
         return $this->externalHmac;
     }
@@ -86,7 +86,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setExternalHmac(string $externalHmac) : self
+    public function setExternalHmac(string $externalHmac): self
     {
         $this->initialized['externalHmac'] = true;
         $this->externalHmac = $externalHmac;
@@ -97,7 +97,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return bool
      */
-    public function getIsLinkedToStagingTestShop() : bool
+    public function getIsLinkedToStagingTestShop(): bool
     {
         return $this->isLinkedToStagingTestShop;
     }
@@ -108,7 +108,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setIsLinkedToStagingTestShop(bool $isLinkedToStagingTestShop) : self
+    public function setIsLinkedToStagingTestShop(bool $isLinkedToStagingTestShop): self
     {
         $this->initialized['isLinkedToStagingTestShop'] = true;
         $this->isLinkedToStagingTestShop = $isLinkedToStagingTestShop;
@@ -119,7 +119,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return bool
      */
-    public function getIsShopInSandboxMode() : bool
+    public function getIsShopInSandboxMode(): bool
     {
         return $this->isShopInSandboxMode;
     }
@@ -130,7 +130,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setIsShopInSandboxMode(bool $isShopInSandboxMode) : self
+    public function setIsShopInSandboxMode(bool $isShopInSandboxMode): self
     {
         $this->initialized['isShopInSandboxMode'] = true;
         $this->isShopInSandboxMode = $isShopInSandboxMode;
@@ -141,7 +141,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return bool
      */
-    public function getIsCreateTestProductsInitialized() : bool
+    public function getIsCreateTestProductsInitialized(): bool
     {
         return $this->isCreateTestProductsInitialized;
     }
@@ -152,7 +152,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setIsCreateTestProductsInitialized(bool $isCreateTestProductsInitialized) : self
+    public function setIsCreateTestProductsInitialized(bool $isCreateTestProductsInitialized): self
     {
         $this->initialized['isCreateTestProductsInitialized'] = true;
         $this->isCreateTestProductsInitialized = $isCreateTestProductsInitialized;
@@ -163,7 +163,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return bool
      */
-    public function getIsSessionInvalid() : bool
+    public function getIsSessionInvalid(): bool
     {
         return $this->isSessionInvalid;
     }
@@ -174,7 +174,7 @@ class ShopInfoGetResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setIsSessionInvalid(bool $isSessionInvalid) : self
+    public function setIsSessionInvalid(bool $isSessionInvalid): self
     {
         $this->initialized['isSessionInvalid'] = true;
         $this->isSessionInvalid = $isSessionInvalid;

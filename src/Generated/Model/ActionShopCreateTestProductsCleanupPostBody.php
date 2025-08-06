@@ -7,8 +7,8 @@ class ActionShopCreateTestProductsCleanupPostBody extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -23,7 +23,7 @@ class ActionShopCreateTestProductsCleanupPostBody extends \ArrayObject
      *
      * @return string
      */
-    public function getShopifyShopDomain() : string
+    public function getShopifyShopDomain(): string
     {
         return $this->shopifyShopDomain;
     }
@@ -34,7 +34,7 @@ class ActionShopCreateTestProductsCleanupPostBody extends \ArrayObject
      *
      * @return self
      */
-    public function setShopifyShopDomain(string $shopifyShopDomain) : self
+    public function setShopifyShopDomain(string $shopifyShopDomain): self
     {
         $this->initialized['shopifyShopDomain'] = true;
         $this->shopifyShopDomain = $shopifyShopDomain;

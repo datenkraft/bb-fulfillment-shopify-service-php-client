@@ -7,8 +7,8 @@ class ShopifyInventoryItem extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -29,7 +29,7 @@ class ShopifyInventoryItem extends \ArrayObject
      *
      * @return float
      */
-    public function getId() : float
+    public function getId(): float
     {
         return $this->id;
     }
@@ -40,7 +40,7 @@ class ShopifyInventoryItem extends \ArrayObject
      *
      * @return self
      */
-    public function setId(float $id) : self
+    public function setId(float $id): self
     {
         $this->initialized['id'] = true;
         $this->id = $id;
@@ -51,7 +51,7 @@ class ShopifyInventoryItem extends \ArrayObject
      *
      * @return string
      */
-    public function getProductNumber() : string
+    public function getProductNumber(): string
     {
         return $this->productNumber;
     }
@@ -62,7 +62,7 @@ class ShopifyInventoryItem extends \ArrayObject
      *
      * @return self
      */
-    public function setProductNumber(string $productNumber) : self
+    public function setProductNumber(string $productNumber): self
     {
         $this->initialized['productNumber'] = true;
         $this->productNumber = $productNumber;

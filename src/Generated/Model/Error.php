@@ -7,8 +7,8 @@ class Error extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -27,7 +27,7 @@ class Error extends \ArrayObject
     /**
      * References
      *
-     * @var ErrorReferencesItem[]
+     * @var list<ErrorReferencesItem>
      */
     protected $references;
     /**
@@ -35,7 +35,7 @@ class Error extends \ArrayObject
      *
      * @return string
      */
-    public function getCode() : string
+    public function getCode(): string
     {
         return $this->code;
     }
@@ -46,7 +46,7 @@ class Error extends \ArrayObject
      *
      * @return self
      */
-    public function setCode(string $code) : self
+    public function setCode(string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
@@ -57,7 +57,7 @@ class Error extends \ArrayObject
      *
      * @return string
      */
-    public function getMessage() : string
+    public function getMessage(): string
     {
         return $this->message;
     }
@@ -68,7 +68,7 @@ class Error extends \ArrayObject
      *
      * @return self
      */
-    public function setMessage(string $message) : self
+    public function setMessage(string $message): self
     {
         $this->initialized['message'] = true;
         $this->message = $message;
@@ -77,20 +77,20 @@ class Error extends \ArrayObject
     /**
      * References
      *
-     * @return ErrorReferencesItem[]
+     * @return list<ErrorReferencesItem>
      */
-    public function getReferences() : array
+    public function getReferences(): array
     {
         return $this->references;
     }
     /**
      * References
      *
-     * @param ErrorReferencesItem[] $references
+     * @param list<ErrorReferencesItem> $references
      *
      * @return self
      */
-    public function setReferences(array $references) : self
+    public function setReferences(array $references): self
     {
         $this->initialized['references'] = true;
         $this->references = $references;

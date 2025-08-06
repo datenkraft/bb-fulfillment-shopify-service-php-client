@@ -5,7 +5,6 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normali
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\CheckArray;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -18,18 +17,15 @@ class InformationNormalizer implements DenormalizerInterface, NormalizerInterfac
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\Information';
+        return $type === \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Information::class;
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\Information';
+        return is_object($data) && get_class($data) === \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Information::class;
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -50,9 +46,9 @@ class InformationNormalizer implements DenormalizerInterface, NormalizerInterfac
             unset($data['message']);
         }
         if (\array_key_exists('references', $data)) {
-            $values = array();
+            $values = [];
             foreach ($data['references'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ErrorReferencesItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorReferencesItem::class, 'json', $context);
             }
             $object->setReferences($values);
             unset($data['references']);
@@ -64,26 +60,27 @@ class InformationNormalizer implements DenormalizerInterface, NormalizerInterfac
         }
         return $object;
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = array();
-        $data['code'] = $object->getCode();
-        $data['message'] = $object->getMessage();
-        if ($object->isInitialized('references') && null !== $object->getReferences()) {
-            $values = array();
-            foreach ($object->getReferences() as $value) {
+        $dataArray = [];
+        $dataArray['code'] = $data->getCode();
+        $dataArray['message'] = $data->getMessage();
+        if ($data->isInitialized('references') && null !== $data->getReferences()) {
+            $values = [];
+            foreach ($data->getReferences() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
-            $data['references'] = $values;
+            $dataArray['references'] = $values;
         }
-        foreach ($object as $key => $value_1) {
+        foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $data[$key] = $value_1;
+                $dataArray[$key] = $value_1;
             }
         }
-        return $data;
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Information::class => false];
     }
 }

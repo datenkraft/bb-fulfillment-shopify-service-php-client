@@ -7,8 +7,8 @@ class ActionTestShopRegisterPostResponse200 extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -23,7 +23,7 @@ class ActionTestShopRegisterPostResponse200 extends \ArrayObject
      *
      * @return string
      */
-    public function getShopCode() : string
+    public function getShopCode(): string
     {
         return $this->shopCode;
     }
@@ -34,7 +34,7 @@ class ActionTestShopRegisterPostResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setShopCode(string $shopCode) : self
+    public function setShopCode(string $shopCode): self
     {
         $this->initialized['shopCode'] = true;
         $this->shopCode = $shopCode;

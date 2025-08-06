@@ -5,7 +5,6 @@ namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normali
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\CheckArray;
 use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -18,18 +17,15 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ShopInfoGetResponse200';
+        return $type === \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200::class;
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FulfillmentShopifyService\\Generated\\Model\\ShopInfoGetResponse200';
+        return is_object($data) && get_class($data) === \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200::class;
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -38,6 +34,18 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200();
+        if (\array_key_exists('isLinkedToStagingTestShop', $data) && \is_int($data['isLinkedToStagingTestShop'])) {
+            $data['isLinkedToStagingTestShop'] = (bool) $data['isLinkedToStagingTestShop'];
+        }
+        if (\array_key_exists('isShopInSandboxMode', $data) && \is_int($data['isShopInSandboxMode'])) {
+            $data['isShopInSandboxMode'] = (bool) $data['isShopInSandboxMode'];
+        }
+        if (\array_key_exists('isCreateTestProductsInitialized', $data) && \is_int($data['isCreateTestProductsInitialized'])) {
+            $data['isCreateTestProductsInitialized'] = (bool) $data['isCreateTestProductsInitialized'];
+        }
+        if (\array_key_exists('isSessionInvalid', $data) && \is_int($data['isSessionInvalid'])) {
+            $data['isSessionInvalid'] = (bool) $data['isSessionInvalid'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -72,35 +80,36 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
         }
         return $object;
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = array();
-        if ($object->isInitialized('shopCode') && null !== $object->getShopCode()) {
-            $data['shopCode'] = $object->getShopCode();
+        $dataArray = [];
+        if ($data->isInitialized('shopCode') && null !== $data->getShopCode()) {
+            $dataArray['shopCode'] = $data->getShopCode();
         }
-        if ($object->isInitialized('externalHmac') && null !== $object->getExternalHmac()) {
-            $data['externalHmac'] = $object->getExternalHmac();
+        if ($data->isInitialized('externalHmac') && null !== $data->getExternalHmac()) {
+            $dataArray['externalHmac'] = $data->getExternalHmac();
         }
-        if ($object->isInitialized('isLinkedToStagingTestShop') && null !== $object->getIsLinkedToStagingTestShop()) {
-            $data['isLinkedToStagingTestShop'] = $object->getIsLinkedToStagingTestShop();
+        if ($data->isInitialized('isLinkedToStagingTestShop') && null !== $data->getIsLinkedToStagingTestShop()) {
+            $dataArray['isLinkedToStagingTestShop'] = $data->getIsLinkedToStagingTestShop();
         }
-        if ($object->isInitialized('isShopInSandboxMode') && null !== $object->getIsShopInSandboxMode()) {
-            $data['isShopInSandboxMode'] = $object->getIsShopInSandboxMode();
+        if ($data->isInitialized('isShopInSandboxMode') && null !== $data->getIsShopInSandboxMode()) {
+            $dataArray['isShopInSandboxMode'] = $data->getIsShopInSandboxMode();
         }
-        if ($object->isInitialized('isCreateTestProductsInitialized') && null !== $object->getIsCreateTestProductsInitialized()) {
-            $data['isCreateTestProductsInitialized'] = $object->getIsCreateTestProductsInitialized();
+        if ($data->isInitialized('isCreateTestProductsInitialized') && null !== $data->getIsCreateTestProductsInitialized()) {
+            $dataArray['isCreateTestProductsInitialized'] = $data->getIsCreateTestProductsInitialized();
         }
-        if ($object->isInitialized('isSessionInvalid') && null !== $object->getIsSessionInvalid()) {
-            $data['isSessionInvalid'] = $object->getIsSessionInvalid();
+        if ($data->isInitialized('isSessionInvalid') && null !== $data->getIsSessionInvalid()) {
+            $dataArray['isSessionInvalid'] = $data->getIsSessionInvalid();
         }
-        foreach ($object as $key => $value) {
+        foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
-                $data[$key] = $value;
+                $dataArray[$key] = $value;
             }
         }
-        return $data;
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200::class => false];
     }
 }

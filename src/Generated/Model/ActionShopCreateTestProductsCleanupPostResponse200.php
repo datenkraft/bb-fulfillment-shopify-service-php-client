@@ -7,8 +7,8 @@ class ActionShopCreateTestProductsCleanupPostResponse200 extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -23,7 +23,7 @@ class ActionShopCreateTestProductsCleanupPostResponse200 extends \ArrayObject
      *
      * @return string|null
      */
-    public function getOAuthLoginUrl() : ?string
+    public function getOAuthLoginUrl(): ?string
     {
         return $this->oAuthLoginUrl;
     }
@@ -34,7 +34,7 @@ class ActionShopCreateTestProductsCleanupPostResponse200 extends \ArrayObject
      *
      * @return self
      */
-    public function setOAuthLoginUrl(?string $oAuthLoginUrl) : self
+    public function setOAuthLoginUrl(?string $oAuthLoginUrl): self
     {
         $this->initialized['oAuthLoginUrl'] = true;
         $this->oAuthLoginUrl = $oAuthLoginUrl;

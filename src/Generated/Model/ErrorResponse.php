@@ -7,34 +7,34 @@ class ErrorResponse extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
     /**
      * errors
      *
-     * @var Error[]
+     * @var list<Error>
      */
     protected $errors;
     /**
      * errors
      *
-     * @return Error[]
+     * @return list<Error>
      */
-    public function getErrors() : array
+    public function getErrors(): array
     {
         return $this->errors;
     }
     /**
      * errors
      *
-     * @param Error[] $errors
+     * @param list<Error> $errors
      *
      * @return self
      */
-    public function setErrors(array $errors) : self
+    public function setErrors(array $errors): self
     {
         $this->initialized['errors'] = true;
         $this->errors = $errors;
