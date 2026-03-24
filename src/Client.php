@@ -15,7 +15,7 @@ class Client extends \Datenkraft\Backbone\Client\FulfillmentShopifyService\Gener
      * @return static
      * @throws AuthException
      */
-    public static function createWithFactory(ClientFactory $clientFactory, string $endpointUrl = null): self
+    public static function createWithFactory(ClientFactory $clientFactory, ?string $endpointUrl = null): self
     {
         $endpointUrl = $endpointUrl ?? getenv('X_DATENKRAFT_FULFILLMENT_SHOPIFY_SERVICE_URL') ?: null;
         return $clientFactory->createClient(static::class, $endpointUrl);
