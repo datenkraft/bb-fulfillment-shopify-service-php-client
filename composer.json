@@ -3,8 +3,8 @@
   "description": "The Xxx API PHP Client enables you to work with the Xxx API",
   "type": "library",
   "require": {
-    "php": "^8.0",
-    "datenkraft/bb-base-api-php-client": "^3.0.0"
+    "php": "^8.4",
+    "datenkraft/bb-base-api-php-client": "^4.0.0"
   },
   "license": "MIT",
   "authors": [
@@ -23,7 +23,7 @@
     "phpunit/phpunit": "^9.6",
     "pact-foundation/pact-php": "^7.1",
     "squizlabs/php_codesniffer": "^3.7",
-    "jane-php/open-api-3": "^7.5.0",
+    "jane-php/open-api-3": "^7.11.0",
     "friendsofphp/php-cs-fixer": "^3.16"
   },
   "autoload-dev": {
@@ -36,7 +36,7 @@
       "php-http/discovery": true
     },
     "platform": {
-      "php": "8.0"
+      "php": "8.4"
     }
   }
 }
