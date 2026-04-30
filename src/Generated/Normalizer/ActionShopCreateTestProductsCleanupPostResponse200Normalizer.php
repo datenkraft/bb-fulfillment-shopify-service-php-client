@@ -27,15 +27,15 @@ class ActionShopCreateTestProductsCleanupPostResponse200Normalizer implements De
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsCleanupPostResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsCleanupPostResponse200();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('oAuthLoginUrl', $data) && $data['oAuthLoginUrl'] !== null) {
             $object->setOAuthLoginUrl($data['oAuthLoginUrl']);
@@ -54,7 +54,7 @@ class ActionShopCreateTestProductsCleanupPostResponse200Normalizer implements De
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('oAuthLoginUrl') && null !== $data->getOAuthLoginUrl()) {
+        if ($data->isInitialized('oAuthLoginUrl')) {
             $dataArray['oAuthLoginUrl'] = $data->getOAuthLoginUrl();
         }
         foreach ($data as $key => $value) {

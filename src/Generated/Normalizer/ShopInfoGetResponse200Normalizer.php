@@ -27,13 +27,16 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200();
         if (\array_key_exists('isLinkedToStagingTestShop', $data) && \is_int($data['isLinkedToStagingTestShop'])) {
             $data['isLinkedToStagingTestShop'] = (bool) $data['isLinkedToStagingTestShop'];
         }
@@ -45,9 +48,6 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
         }
         if (\array_key_exists('isSessionInvalid', $data) && \is_int($data['isSessionInvalid'])) {
             $data['isSessionInvalid'] = (bool) $data['isSessionInvalid'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('shopCode', $data)) {
             $object->setShopCode($data['shopCode']);

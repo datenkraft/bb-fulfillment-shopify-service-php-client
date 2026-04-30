@@ -27,13 +27,16 @@ class ShopifyProductVariantNormalizer implements DenormalizerInterface, Normaliz
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyProductVariant();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyProductVariant();
         if (\array_key_exists('id', $data) && \is_int($data['id'])) {
             $data['id'] = (double) $data['id'];
         }
@@ -42,9 +45,6 @@ class ShopifyProductVariantNormalizer implements DenormalizerInterface, Normaliz
         }
         if (\array_key_exists('productId', $data) && \is_int($data['productId'])) {
             $data['productId'] = (double) $data['productId'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);
@@ -91,10 +91,10 @@ class ShopifyProductVariantNormalizer implements DenormalizerInterface, Normaliz
         if ($data->isInitialized('productId') && null !== $data->getProductId()) {
             $dataArray['productId'] = $data->getProductId();
         }
-        if ($data->isInitialized('title') && null !== $data->getTitle()) {
+        if ($data->isInitialized('title')) {
             $dataArray['title'] = $data->getTitle();
         }
-        if ($data->isInitialized('productNumber') && null !== $data->getProductNumber()) {
+        if ($data->isInitialized('productNumber')) {
             $dataArray['productNumber'] = $data->getProductNumber();
         }
         foreach ($data as $key => $value) {

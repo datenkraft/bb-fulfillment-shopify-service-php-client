@@ -13,14 +13,10 @@ class ShopifyProductVariantCollection extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
-     *
      * @var list<ShopifyProductVariant>
      */
     protected $data;
     /**
-     * 
-     *
      * @return list<ShopifyProductVariant>
      */
     public function getData(): array
@@ -28,8 +24,6 @@ class ShopifyProductVariantCollection extends \ArrayObject
         return $this->data;
     }
     /**
-     * 
-     *
      * @param list<ShopifyProductVariant> $data
      *
      * @return self

@@ -13,14 +13,10 @@ class ShopifyInventoryItemCollection extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
-     *
      * @var list<ShopifyInventoryItem>
      */
     protected $data;
     /**
-     * 
-     *
      * @return list<ShopifyInventoryItem>
      */
     public function getData(): array
@@ -28,8 +24,6 @@ class ShopifyInventoryItemCollection extends \ArrayObject
         return $this->data;
     }
     /**
-     * 
-     *
      * @param list<ShopifyInventoryItem> $data
      *
      * @return self

@@ -27,15 +27,15 @@ class ActionShopClearCachePostResponse200Normalizer implements DenormalizerInter
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostResponse200();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('date', $data)) {
             $object->setDate(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['date']));
@@ -52,7 +52,7 @@ class ActionShopClearCachePostResponse200Normalizer implements DenormalizerInter
     {
         $dataArray = [];
         if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()?->format('Y-m-d\TH:i:sP');
+            $dataArray['date'] = $data->getDate()->format('Y-m-d\TH:i:sP');
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
