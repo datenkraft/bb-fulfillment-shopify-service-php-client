@@ -27,15 +27,15 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\CollectionPagination();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\CollectionPagination();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('page', $data)) {
             $object->setPage($data['page']);
@@ -68,7 +68,7 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
         if ($data->isInitialized('pageSize') && null !== $data->getPageSize()) {
             $dataArray['pageSize'] = $data->getPageSize();
         }
-        if ($data->isInitialized('totalCount') && null !== $data->getTotalCount()) {
+        if ($data->isInitialized('totalCount')) {
             $dataArray['totalCount'] = $data->getTotalCount();
         }
         foreach ($data as $key => $value) {

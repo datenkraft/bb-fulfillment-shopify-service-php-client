@@ -27,15 +27,15 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLog();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLog();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);
@@ -104,20 +104,20 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if ($data->isInitialized('identifier') && null !== $data->getIdentifier()) {
             $dataArray['identifier'] = $data->getIdentifier();
         }
-        if ($data->isInitialized('content') && null !== $data->getContent()) {
+        if ($data->isInitialized('content')) {
             $dataArray['content'] = $data->getContent();
         }
-        if ($data->isInitialized('confidentialContent') && null !== $data->getConfidentialContent()) {
+        if ($data->isInitialized('confidentialContent')) {
             $dataArray['confidentialContent'] = $data->getConfidentialContent();
         }
-        if ($data->isInitialized('requestId') && null !== $data->getRequestId()) {
+        if ($data->isInitialized('requestId')) {
             $dataArray['requestId'] = $data->getRequestId();
         }
         if ($data->isInitialized('oauthClientId') && null !== $data->getOauthClientId()) {
             $dataArray['oauthClientId'] = $data->getOauthClientId();
         }
         if ($data->isInitialized('timestamp') && null !== $data->getTimestamp()) {
-            $dataArray['timestamp'] = $data->getTimestamp()?->format('Y-m-d\TH:i:sP');
+            $dataArray['timestamp'] = $data->getTimestamp()->format('Y-m-d\TH:i:sP');
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
