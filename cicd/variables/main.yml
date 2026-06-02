@@ -5,4 +5,4 @@ variables:
   SERVICE_NAME: '${CI_PROJECT_NAME}'
   IMAGE_NAME: '${REGISTRY_HOST}/dk-gg-rgstry/base/php-cli'
   IMAGE_TAG_DEV: 'dev'
-  BASE_IMAGE_TAG: '2026-01-26'
+  BASE_IMAGE_TAG: '2026-06-02'
