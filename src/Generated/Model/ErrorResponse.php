@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ErrorResponse extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ErrorResponse implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * errors
      *
      * @var list<Error>
      */
-    protected $errors;
-    /**
-     * errors
-     *
-     * @return list<Error>
-     */
-    public function getErrors(): array
+    public array $errors;
+    public function definedProperties(): array
     {
-        return $this->errors;
-    }
-    /**
-     * errors
-     *
-     * @param list<Error> $errors
-     *
-     * @return self
-     */
-    public function setErrors(array $errors): self
-    {
-        $this->initialized['errors'] = true;
-        $this->errors = $errors;
-        return $this;
+        return ['errors' => 'errors'];
     }
 }

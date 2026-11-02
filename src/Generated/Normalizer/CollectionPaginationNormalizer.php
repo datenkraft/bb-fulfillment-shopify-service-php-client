@@ -38,19 +38,20 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('page', $data)) {
-            $object->setPage($data['page']);
+            $object->page = $data['page'];
             unset($data['page']);
         }
         if (\array_key_exists('pageSize', $data)) {
-            $object->setPageSize($data['pageSize']);
+            $object->pageSize = $data['pageSize'];
             unset($data['pageSize']);
         }
         if (\array_key_exists('totalCount', $data) && $data['totalCount'] !== null) {
-            $object->setTotalCount($data['totalCount']);
+            $object->totalCount = $data['totalCount'];
             unset($data['totalCount']);
         }
-        elseif (\array_key_exists('totalCount', $data) && $data['totalCount'] === null) {
-            $object->setTotalCount(null);
+        elseif (\array_key_exists('totalCount', $data)) {
+            $object->totalCount = null;
+            unset($data['totalCount']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -62,16 +63,16 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('page') && null !== $data->getPage()) {
-            $dataArray['page'] = $data->getPage();
+        if (array_key_exists('page', get_object_vars($data)) && null !== ($data->page ?? null)) {
+            $dataArray['page'] = $data->page;
         }
-        if ($data->isInitialized('pageSize') && null !== $data->getPageSize()) {
-            $dataArray['pageSize'] = $data->getPageSize();
+        if (array_key_exists('pageSize', get_object_vars($data)) && null !== ($data->pageSize ?? null)) {
+            $dataArray['pageSize'] = $data->pageSize;
         }
-        if ($data->isInitialized('totalCount')) {
-            $dataArray['totalCount'] = $data->getTotalCount();
+        if (array_key_exists('totalCount', get_object_vars($data)) && null !== ($data->totalCount ?? null)) {
+            $dataArray['totalCount'] = $data->totalCount;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

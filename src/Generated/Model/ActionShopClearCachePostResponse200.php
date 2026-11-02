@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionShopClearCachePostResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ActionShopClearCachePostResponse200 implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * Date. Format in ISO 8601.
      *
      * @var \DateTime
      */
-    protected $date;
-    /**
-     * Date. Format in ISO 8601.
-     *
-     * @return \DateTime
-     */
-    public function getDate(): \DateTime
+    public \DateTime $date;
+    public function definedProperties(): array
     {
-        return $this->date;
-    }
-    /**
-     * Date. Format in ISO 8601.
-     *
-     * @param \DateTime $date
-     *
-     * @return self
-     */
-    public function setDate(\DateTime $date): self
-    {
-        $this->initialized['date'] = true;
-        $this->date = $date;
-        return $this;
+        return ['date' => 'date'];
     }
 }

@@ -2,36 +2,17 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ShopifyInventoryItemCollection extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ShopifyInventoryItemCollection implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * @var list<ShopifyInventoryItem>
      */
-    protected $data;
-    /**
-     * @return list<ShopifyInventoryItem>
-     */
-    public function getData(): array
+    public array $data;
+    public function definedProperties(): array
     {
-        return $this->data;
-    }
-    /**
-     * @param list<ShopifyInventoryItem> $data
-     *
-     * @return self
-     */
-    public function setData(array $data): self
-    {
-        $this->initialized['data'] = true;
-        $this->data = $data;
-        return $this;
+        return ['data' => 'data'];
     }
 }

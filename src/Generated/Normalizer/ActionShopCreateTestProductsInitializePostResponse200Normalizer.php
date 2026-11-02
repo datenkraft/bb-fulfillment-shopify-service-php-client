@@ -38,11 +38,12 @@ class ActionShopCreateTestProductsInitializePostResponse200Normalizer implements
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('oAuthLoginUrl', $data) && $data['oAuthLoginUrl'] !== null) {
-            $object->setOAuthLoginUrl($data['oAuthLoginUrl']);
+            $object->oAuthLoginUrl = $data['oAuthLoginUrl'];
             unset($data['oAuthLoginUrl']);
         }
-        elseif (\array_key_exists('oAuthLoginUrl', $data) && $data['oAuthLoginUrl'] === null) {
-            $object->setOAuthLoginUrl(null);
+        elseif (\array_key_exists('oAuthLoginUrl', $data)) {
+            $object->oAuthLoginUrl = null;
+            unset($data['oAuthLoginUrl']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -54,10 +55,10 @@ class ActionShopCreateTestProductsInitializePostResponse200Normalizer implements
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('oAuthLoginUrl')) {
-            $dataArray['oAuthLoginUrl'] = $data->getOAuthLoginUrl();
+        if (array_key_exists('oAuthLoginUrl', get_object_vars($data)) && null !== ($data->oAuthLoginUrl ?? null)) {
+            $dataArray['oAuthLoginUrl'] = $data->oAuthLoginUrl;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -38,7 +38,7 @@ class ActionShopCreateTestProductsCleanupPostBodyNormalizer implements Denormali
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('shopifyShopDomain', $data)) {
-            $object->setShopifyShopDomain($data['shopifyShopDomain']);
+            $object->shopifyShopDomain = $data['shopifyShopDomain'];
             unset($data['shopifyShopDomain']);
         }
         foreach ($data as $key => $value) {
@@ -51,10 +51,10 @@ class ActionShopCreateTestProductsCleanupPostBodyNormalizer implements Denormali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('shopifyShopDomain') && null !== $data->getShopifyShopDomain()) {
-            $dataArray['shopifyShopDomain'] = $data->getShopifyShopDomain();
+        if (array_key_exists('shopifyShopDomain', get_object_vars($data)) && null !== ($data->shopifyShopDomain ?? null)) {
+            $dataArray['shopifyShopDomain'] = $data->shopifyShopDomain;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

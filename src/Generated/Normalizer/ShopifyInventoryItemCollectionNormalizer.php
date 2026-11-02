@@ -42,7 +42,7 @@ class ShopifyInventoryItemCollectionNormalizer implements DenormalizerInterface,
             foreach ($data['data'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyInventoryItem::class, 'json', $context);
             }
-            $object->setData($values);
+            $object->data = $values;
             unset($data['data']);
         }
         foreach ($data as $key => $value_1) {
@@ -55,14 +55,15 @@ class ShopifyInventoryItemCollectionNormalizer implements DenormalizerInterface,
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('data') && null !== $data->getData()) {
+        if (array_key_exists('data', get_object_vars($data)) && null !== ($data->data ?? null)) {
             $values = [];
-            foreach ($data->getData() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            foreach ($data->data as $value) {
+                $normalized = $value === null ? null : $this->normalizer->normalize($value, 'json', $context);
+                $values[] = \is_iterable($normalized) ? new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\JsonObject($normalized) : $normalized;
             }
             $dataArray['data'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

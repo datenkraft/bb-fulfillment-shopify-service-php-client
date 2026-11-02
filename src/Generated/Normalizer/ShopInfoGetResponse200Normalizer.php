@@ -50,27 +50,27 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
             $data['isSessionInvalid'] = (bool) $data['isSessionInvalid'];
         }
         if (\array_key_exists('shopCode', $data)) {
-            $object->setShopCode($data['shopCode']);
+            $object->shopCode = $data['shopCode'];
             unset($data['shopCode']);
         }
         if (\array_key_exists('externalHmac', $data)) {
-            $object->setExternalHmac($data['externalHmac']);
+            $object->externalHmac = $data['externalHmac'];
             unset($data['externalHmac']);
         }
         if (\array_key_exists('isLinkedToStagingTestShop', $data)) {
-            $object->setIsLinkedToStagingTestShop($data['isLinkedToStagingTestShop']);
+            $object->isLinkedToStagingTestShop = $data['isLinkedToStagingTestShop'];
             unset($data['isLinkedToStagingTestShop']);
         }
         if (\array_key_exists('isShopInSandboxMode', $data)) {
-            $object->setIsShopInSandboxMode($data['isShopInSandboxMode']);
+            $object->isShopInSandboxMode = $data['isShopInSandboxMode'];
             unset($data['isShopInSandboxMode']);
         }
         if (\array_key_exists('isCreateTestProductsInitialized', $data)) {
-            $object->setIsCreateTestProductsInitialized($data['isCreateTestProductsInitialized']);
+            $object->isCreateTestProductsInitialized = $data['isCreateTestProductsInitialized'];
             unset($data['isCreateTestProductsInitialized']);
         }
         if (\array_key_exists('isSessionInvalid', $data)) {
-            $object->setIsSessionInvalid($data['isSessionInvalid']);
+            $object->isSessionInvalid = $data['isSessionInvalid'];
             unset($data['isSessionInvalid']);
         }
         foreach ($data as $key => $value) {
@@ -83,25 +83,25 @@ class ShopInfoGetResponse200Normalizer implements DenormalizerInterface, Normali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('shopCode') && null !== $data->getShopCode()) {
-            $dataArray['shopCode'] = $data->getShopCode();
+        if (array_key_exists('shopCode', get_object_vars($data)) && null !== ($data->shopCode ?? null)) {
+            $dataArray['shopCode'] = $data->shopCode;
         }
-        if ($data->isInitialized('externalHmac') && null !== $data->getExternalHmac()) {
-            $dataArray['externalHmac'] = $data->getExternalHmac();
+        if (array_key_exists('externalHmac', get_object_vars($data)) && null !== ($data->externalHmac ?? null)) {
+            $dataArray['externalHmac'] = $data->externalHmac;
         }
-        if ($data->isInitialized('isLinkedToStagingTestShop') && null !== $data->getIsLinkedToStagingTestShop()) {
-            $dataArray['isLinkedToStagingTestShop'] = $data->getIsLinkedToStagingTestShop();
+        if (array_key_exists('isLinkedToStagingTestShop', get_object_vars($data)) && null !== ($data->isLinkedToStagingTestShop ?? null)) {
+            $dataArray['isLinkedToStagingTestShop'] = $data->isLinkedToStagingTestShop;
         }
-        if ($data->isInitialized('isShopInSandboxMode') && null !== $data->getIsShopInSandboxMode()) {
-            $dataArray['isShopInSandboxMode'] = $data->getIsShopInSandboxMode();
+        if (array_key_exists('isShopInSandboxMode', get_object_vars($data)) && null !== ($data->isShopInSandboxMode ?? null)) {
+            $dataArray['isShopInSandboxMode'] = $data->isShopInSandboxMode;
         }
-        if ($data->isInitialized('isCreateTestProductsInitialized') && null !== $data->getIsCreateTestProductsInitialized()) {
-            $dataArray['isCreateTestProductsInitialized'] = $data->getIsCreateTestProductsInitialized();
+        if (array_key_exists('isCreateTestProductsInitialized', get_object_vars($data)) && null !== ($data->isCreateTestProductsInitialized ?? null)) {
+            $dataArray['isCreateTestProductsInitialized'] = $data->isCreateTestProductsInitialized;
         }
-        if ($data->isInitialized('isSessionInvalid') && null !== $data->getIsSessionInvalid()) {
-            $dataArray['isSessionInvalid'] = $data->getIsSessionInvalid();
+        if (array_key_exists('isSessionInvalid', get_object_vars($data)) && null !== ($data->isSessionInvalid ?? null)) {
+            $dataArray['isSessionInvalid'] = $data->isSessionInvalid;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -38,7 +38,7 @@ class ActionShopToggleSandboxModePostResponse200Normalizer implements Denormaliz
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('shopCode', $data)) {
-            $object->setShopCode($data['shopCode']);
+            $object->shopCode = $data['shopCode'];
             unset($data['shopCode']);
         }
         foreach ($data as $key => $value) {
@@ -51,10 +51,10 @@ class ActionShopToggleSandboxModePostResponse200Normalizer implements Denormaliz
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('shopCode') && null !== $data->getShopCode()) {
-            $dataArray['shopCode'] = $data->getShopCode();
+        if (array_key_exists('shopCode', get_object_vars($data)) && null !== ($data->shopCode ?? null)) {
+            $dataArray['shopCode'] = $data->shopCode;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

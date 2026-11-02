@@ -2,58 +2,21 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class Collection extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class Collection implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * @var CollectionPagination
      */
-    protected $pagination;
+    public CollectionPagination $pagination;
     /**
-     * @var array<string, mixed>
+     * @var iterable<string, mixed>
      */
-    protected $data;
-    /**
-     * @return CollectionPagination
-     */
-    public function getPagination(): CollectionPagination
+    public iterable $data;
+    public function definedProperties(): array
     {
-        return $this->pagination;
-    }
-    /**
-     * @param CollectionPagination $pagination
-     *
-     * @return self
-     */
-    public function setPagination(CollectionPagination $pagination): self
-    {
-        $this->initialized['pagination'] = true;
-        $this->pagination = $pagination;
-        return $this;
-    }
-    /**
-     * @return array<string, mixed>
-     */
-    public function getData(): iterable
-    {
-        return $this->data;
-    }
-    /**
-     * @param array<string, mixed> $data
-     *
-     * @return self
-     */
-    public function setData(iterable $data): self
-    {
-        $this->initialized['data'] = true;
-        $this->data = $data;
-        return $this;
+        return ['pagination' => 'pagination', 'data' => 'data'];
     }
 }

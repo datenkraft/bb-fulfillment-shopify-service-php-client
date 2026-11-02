@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionTestShopRegisterPostResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ActionTestShopRegisterPostResponse200 implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * ShopCode
      *
      * @var string
      */
-    protected $shopCode;
-    /**
-     * ShopCode
-     *
-     * @return string
-     */
-    public function getShopCode(): string
+    public string $shopCode;
+    public function definedProperties(): array
     {
-        return $this->shopCode;
-    }
-    /**
-     * ShopCode
-     *
-     * @param string $shopCode
-     *
-     * @return self
-     */
-    public function setShopCode(string $shopCode): self
-    {
-        $this->initialized['shopCode'] = true;
-        $this->shopCode = $shopCode;
-        return $this;
+        return ['shopCode' => 'shopCode'];
     }
 }

@@ -38,48 +38,63 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('id', $data)) {
-            $object->setId($data['id']);
+            $object->id = $data['id'];
             unset($data['id']);
         }
         if (\array_key_exists('endpoint', $data)) {
-            $object->setEndpoint($data['endpoint']);
+            $object->endpoint = $data['endpoint'];
             unset($data['endpoint']);
         }
         if (\array_key_exists('version', $data)) {
-            $object->setVersion($data['version']);
+            $object->version = $data['version'];
             unset($data['version']);
         }
         if (\array_key_exists('identifier', $data)) {
-            $object->setIdentifier($data['identifier']);
+            $object->identifier = $data['identifier'];
             unset($data['identifier']);
         }
         if (\array_key_exists('content', $data) && $data['content'] !== null) {
-            $object->setContent($data['content']);
+            $object->content = $data['content'];
             unset($data['content']);
         }
-        elseif (\array_key_exists('content', $data) && $data['content'] === null) {
-            $object->setContent(null);
+        elseif (\array_key_exists('content', $data)) {
+            $object->content = null;
+            unset($data['content']);
         }
         if (\array_key_exists('confidentialContent', $data) && $data['confidentialContent'] !== null) {
-            $object->setConfidentialContent($data['confidentialContent']);
+            $object->confidentialContent = $data['confidentialContent'];
             unset($data['confidentialContent']);
         }
-        elseif (\array_key_exists('confidentialContent', $data) && $data['confidentialContent'] === null) {
-            $object->setConfidentialContent(null);
+        elseif (\array_key_exists('confidentialContent', $data)) {
+            $object->confidentialContent = null;
+            unset($data['confidentialContent']);
         }
         if (\array_key_exists('requestId', $data) && $data['requestId'] !== null) {
-            $object->setRequestId($data['requestId']);
+            $object->requestId = $data['requestId'];
             unset($data['requestId']);
         }
-        elseif (\array_key_exists('requestId', $data) && $data['requestId'] === null) {
-            $object->setRequestId(null);
+        elseif (\array_key_exists('requestId', $data)) {
+            $object->requestId = null;
+            unset($data['requestId']);
         }
         if (\array_key_exists('oauthClientId', $data)) {
-            $object->setOauthClientId($data['oauthClientId']);
+            $object->oauthClientId = $data['oauthClientId'];
             unset($data['oauthClientId']);
         }
         if (\array_key_exists('timestamp', $data)) {
-            $object->setTimestamp(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['timestamp']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['timestamp']);
+            if (false === $date) {
+                if (is_string($data['timestamp']) and 1 === preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/', $data['timestamp'])) {
+                    try {
+                        $date = new \DateTime($data['timestamp']);
+                    } catch (\Exception) {
+                        throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\InvalidDateException($data['timestamp'], 'Y-m-d\TH:i:sP');
+                    }
+                } else {
+                    throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\InvalidDateException($data['timestamp'], 'Y-m-d\TH:i:sP');
+                }
+            }
+            $object->timestamp = $date;
             unset($data['timestamp']);
         }
         foreach ($data as $key => $value) {
@@ -92,34 +107,34 @@ class AuditLogNormalizer implements DenormalizerInterface, NormalizerInterface, 
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('id') && null !== $data->getId()) {
-            $dataArray['id'] = $data->getId();
+        if (array_key_exists('id', get_object_vars($data)) && null !== ($data->id ?? null)) {
+            $dataArray['id'] = $data->id;
         }
-        if ($data->isInitialized('endpoint') && null !== $data->getEndpoint()) {
-            $dataArray['endpoint'] = $data->getEndpoint();
+        if (array_key_exists('endpoint', get_object_vars($data)) && null !== ($data->endpoint ?? null)) {
+            $dataArray['endpoint'] = $data->endpoint;
         }
-        if ($data->isInitialized('version') && null !== $data->getVersion()) {
-            $dataArray['version'] = $data->getVersion();
+        if (array_key_exists('version', get_object_vars($data)) && null !== ($data->version ?? null)) {
+            $dataArray['version'] = $data->version;
         }
-        if ($data->isInitialized('identifier') && null !== $data->getIdentifier()) {
-            $dataArray['identifier'] = $data->getIdentifier();
+        if (array_key_exists('identifier', get_object_vars($data)) && null !== ($data->identifier ?? null)) {
+            $dataArray['identifier'] = $data->identifier;
         }
-        if ($data->isInitialized('content')) {
-            $dataArray['content'] = $data->getContent();
+        if (array_key_exists('content', get_object_vars($data)) && null !== ($data->content ?? null)) {
+            $dataArray['content'] = $data->content;
         }
-        if ($data->isInitialized('confidentialContent')) {
-            $dataArray['confidentialContent'] = $data->getConfidentialContent();
+        if (array_key_exists('confidentialContent', get_object_vars($data)) && null !== ($data->confidentialContent ?? null)) {
+            $dataArray['confidentialContent'] = $data->confidentialContent;
         }
-        if ($data->isInitialized('requestId')) {
-            $dataArray['requestId'] = $data->getRequestId();
+        if (array_key_exists('requestId', get_object_vars($data)) && null !== ($data->requestId ?? null)) {
+            $dataArray['requestId'] = $data->requestId;
         }
-        if ($data->isInitialized('oauthClientId') && null !== $data->getOauthClientId()) {
-            $dataArray['oauthClientId'] = $data->getOauthClientId();
+        if (array_key_exists('oauthClientId', get_object_vars($data)) && null !== ($data->oauthClientId ?? null)) {
+            $dataArray['oauthClientId'] = $data->oauthClientId;
         }
-        if ($data->isInitialized('timestamp') && null !== $data->getTimestamp()) {
-            $dataArray['timestamp'] = $data->getTimestamp()->format('Y-m-d\TH:i:sP');
+        if (array_key_exists('timestamp', get_object_vars($data)) && null !== ($data->timestamp ?? null)) {
+            $dataArray['timestamp'] = $data->timestamp->format('Y-m-d\TH:i:sP');
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }
