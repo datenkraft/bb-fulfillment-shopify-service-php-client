@@ -19,13 +19,8 @@ generate-client:
       fi
     - '## Download the new openapi.json'
     - curl -sS --fail-with-body -o openapi.json ${openapi_url}
-    - '## Check for openapi or generator-config changes'
-    - |
-      if git diff --name-only --exit-code --quiet openapi.json composer.lock jane-openapi-configuration.php; then
-        echo "No changes in openapi.json, composer.lock or jane-openapi-configuration.php detected -> skipping client generation."
-        # stop further execution of this job
-        exit 0
-      fi
+    # Always generate: generator updates (composer.lock, jane-openapi-configuration.php) arrive as already committed
+    # template merges, which a working tree diff cannot detect. Unchanged output is skipped by the client changes check below.
     - '## Install dev dependencies'
     - composer install --dev
     - '## Generate the client'
