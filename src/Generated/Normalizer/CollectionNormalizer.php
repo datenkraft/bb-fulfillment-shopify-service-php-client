@@ -38,15 +38,15 @@ class CollectionNormalizer implements DenormalizerInterface, NormalizerInterface
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('pagination', $data)) {
-            $object->setPagination($this->denormalizer->denormalize($data['pagination'], \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\CollectionPagination::class, 'json', $context));
+            $object->pagination = $this->denormalizer->denormalize($data['pagination'], \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\CollectionPagination::class, 'json', $context);
             unset($data['pagination']);
         }
         if (\array_key_exists('data', $data)) {
-            $values = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+            $values = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\JsonObject();
             foreach ($data['data'] as $key => $value) {
                 $values[$key] = $value;
             }
-            $object->setData($values);
+            $object->data = $values;
             unset($data['data']);
         }
         foreach ($data as $key_1 => $value_1) {
@@ -59,17 +59,18 @@ class CollectionNormalizer implements DenormalizerInterface, NormalizerInterface
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('pagination') && null !== $data->getPagination()) {
-            $dataArray['pagination'] = $this->normalizer->normalize($data->getPagination(), 'json', $context);
+        if (array_key_exists('pagination', get_object_vars($data)) && null !== ($data->pagination ?? null)) {
+            $normalized = $this->normalizer->normalize($data->pagination, 'json', $context);
+            $dataArray['pagination'] = \is_iterable($normalized) ? new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\JsonObject($normalized) : $normalized;
         }
-        if ($data->isInitialized('data') && null !== $data->getData()) {
-            $values = [];
-            foreach ($data->getData() as $key => $value) {
+        if (array_key_exists('data', get_object_vars($data)) && null !== ($data->data ?? null)) {
+            $values = new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\JsonObject();
+            foreach ($data->data as $key => $value) {
                 $values[$key] = $value;
             }
             $dataArray['data'] = $values;
         }
-        foreach ($data as $key_1 => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key_1 => $value_1) {
             if (preg_match('/.*/', (string) $key_1)) {
                 $dataArray[$key_1] = $value_1;
             }

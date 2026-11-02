@@ -2,182 +2,49 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ShopInfoGetResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ShopInfoGetResponse200 implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * ShopCode
      *
      * @var string
      */
-    protected $shopCode;
+    public string $shopCode;
     /**
      * ExternalHmac
      *
      * @var string
      */
-    protected $externalHmac;
+    public string $externalHmac;
     /**
      * IsLinkedToStagingTestShop
      *
      * @var bool
      */
-    protected $isLinkedToStagingTestShop;
+    public bool $isLinkedToStagingTestShop;
     /**
      * IsShopInSandboxMode
      *
      * @var bool
      */
-    protected $isShopInSandboxMode;
+    public bool $isShopInSandboxMode;
     /**
      * IsCreateTestProductsInitialized
      *
      * @var bool
      */
-    protected $isCreateTestProductsInitialized;
+    public bool $isCreateTestProductsInitialized;
     /**
      * IsSessionInvalid
      *
      * @var bool
      */
-    protected $isSessionInvalid;
-    /**
-     * ShopCode
-     *
-     * @return string
-     */
-    public function getShopCode(): string
+    public bool $isSessionInvalid;
+    public function definedProperties(): array
     {
-        return $this->shopCode;
-    }
-    /**
-     * ShopCode
-     *
-     * @param string $shopCode
-     *
-     * @return self
-     */
-    public function setShopCode(string $shopCode): self
-    {
-        $this->initialized['shopCode'] = true;
-        $this->shopCode = $shopCode;
-        return $this;
-    }
-    /**
-     * ExternalHmac
-     *
-     * @return string
-     */
-    public function getExternalHmac(): string
-    {
-        return $this->externalHmac;
-    }
-    /**
-     * ExternalHmac
-     *
-     * @param string $externalHmac
-     *
-     * @return self
-     */
-    public function setExternalHmac(string $externalHmac): self
-    {
-        $this->initialized['externalHmac'] = true;
-        $this->externalHmac = $externalHmac;
-        return $this;
-    }
-    /**
-     * IsLinkedToStagingTestShop
-     *
-     * @return bool
-     */
-    public function getIsLinkedToStagingTestShop(): bool
-    {
-        return $this->isLinkedToStagingTestShop;
-    }
-    /**
-     * IsLinkedToStagingTestShop
-     *
-     * @param bool $isLinkedToStagingTestShop
-     *
-     * @return self
-     */
-    public function setIsLinkedToStagingTestShop(bool $isLinkedToStagingTestShop): self
-    {
-        $this->initialized['isLinkedToStagingTestShop'] = true;
-        $this->isLinkedToStagingTestShop = $isLinkedToStagingTestShop;
-        return $this;
-    }
-    /**
-     * IsShopInSandboxMode
-     *
-     * @return bool
-     */
-    public function getIsShopInSandboxMode(): bool
-    {
-        return $this->isShopInSandboxMode;
-    }
-    /**
-     * IsShopInSandboxMode
-     *
-     * @param bool $isShopInSandboxMode
-     *
-     * @return self
-     */
-    public function setIsShopInSandboxMode(bool $isShopInSandboxMode): self
-    {
-        $this->initialized['isShopInSandboxMode'] = true;
-        $this->isShopInSandboxMode = $isShopInSandboxMode;
-        return $this;
-    }
-    /**
-     * IsCreateTestProductsInitialized
-     *
-     * @return bool
-     */
-    public function getIsCreateTestProductsInitialized(): bool
-    {
-        return $this->isCreateTestProductsInitialized;
-    }
-    /**
-     * IsCreateTestProductsInitialized
-     *
-     * @param bool $isCreateTestProductsInitialized
-     *
-     * @return self
-     */
-    public function setIsCreateTestProductsInitialized(bool $isCreateTestProductsInitialized): self
-    {
-        $this->initialized['isCreateTestProductsInitialized'] = true;
-        $this->isCreateTestProductsInitialized = $isCreateTestProductsInitialized;
-        return $this;
-    }
-    /**
-     * IsSessionInvalid
-     *
-     * @return bool
-     */
-    public function getIsSessionInvalid(): bool
-    {
-        return $this->isSessionInvalid;
-    }
-    /**
-     * IsSessionInvalid
-     *
-     * @param bool $isSessionInvalid
-     *
-     * @return self
-     */
-    public function setIsSessionInvalid(bool $isSessionInvalid): self
-    {
-        $this->initialized['isSessionInvalid'] = true;
-        $this->isSessionInvalid = $isSessionInvalid;
-        return $this;
+        return ['shopCode' => 'shopCode', 'externalHmac' => 'externalHmac', 'isLinkedToStagingTestShop' => 'isLinkedToStagingTestShop', 'isShopInSandboxMode' => 'isShopInSandboxMode', 'isCreateTestProductsInitialized' => 'isCreateTestProductsInitialized', 'isSessionInvalid' => 'isSessionInvalid'];
     }
 }

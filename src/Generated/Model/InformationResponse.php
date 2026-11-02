@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class InformationResponse extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class InformationResponse implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * information
      *
      * @var list<Information>
      */
-    protected $information;
-    /**
-     * information
-     *
-     * @return list<Information>
-     */
-    public function getInformation(): array
+    public array $information;
+    public function definedProperties(): array
     {
-        return $this->information;
-    }
-    /**
-     * information
-     *
-     * @param list<Information> $information
-     *
-     * @return self
-     */
-    public function setInformation(array $information): self
-    {
-        $this->initialized['information'] = true;
-        $this->information = $information;
-        return $this;
+        return ['information' => 'information'];
     }
 }

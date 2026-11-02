@@ -38,39 +38,41 @@ class ShopifyProductVariantNormalizer implements DenormalizerInterface, Normaliz
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('id', $data) && \is_int($data['id'])) {
-            $data['id'] = (double) $data['id'];
+            $data['id'] = (float) $data['id'];
         }
         if (\array_key_exists('inventoryItemId', $data) && \is_int($data['inventoryItemId'])) {
-            $data['inventoryItemId'] = (double) $data['inventoryItemId'];
+            $data['inventoryItemId'] = (float) $data['inventoryItemId'];
         }
         if (\array_key_exists('productId', $data) && \is_int($data['productId'])) {
-            $data['productId'] = (double) $data['productId'];
+            $data['productId'] = (float) $data['productId'];
         }
         if (\array_key_exists('id', $data)) {
-            $object->setId($data['id']);
+            $object->id = $data['id'];
             unset($data['id']);
         }
         if (\array_key_exists('inventoryItemId', $data)) {
-            $object->setInventoryItemId($data['inventoryItemId']);
+            $object->inventoryItemId = $data['inventoryItemId'];
             unset($data['inventoryItemId']);
         }
         if (\array_key_exists('productId', $data)) {
-            $object->setProductId($data['productId']);
+            $object->productId = $data['productId'];
             unset($data['productId']);
         }
         if (\array_key_exists('title', $data) && $data['title'] !== null) {
-            $object->setTitle($data['title']);
+            $object->title = $data['title'];
             unset($data['title']);
         }
-        elseif (\array_key_exists('title', $data) && $data['title'] === null) {
-            $object->setTitle(null);
+        elseif (\array_key_exists('title', $data)) {
+            $object->title = null;
+            unset($data['title']);
         }
         if (\array_key_exists('productNumber', $data) && $data['productNumber'] !== null) {
-            $object->setProductNumber($data['productNumber']);
+            $object->productNumber = $data['productNumber'];
             unset($data['productNumber']);
         }
-        elseif (\array_key_exists('productNumber', $data) && $data['productNumber'] === null) {
-            $object->setProductNumber(null);
+        elseif (\array_key_exists('productNumber', $data)) {
+            $object->productNumber = null;
+            unset($data['productNumber']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -82,22 +84,22 @@ class ShopifyProductVariantNormalizer implements DenormalizerInterface, Normaliz
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('id') && null !== $data->getId()) {
-            $dataArray['id'] = $data->getId();
+        if (array_key_exists('id', get_object_vars($data)) && null !== ($data->id ?? null)) {
+            $dataArray['id'] = $data->id;
         }
-        if ($data->isInitialized('inventoryItemId') && null !== $data->getInventoryItemId()) {
-            $dataArray['inventoryItemId'] = $data->getInventoryItemId();
+        if (array_key_exists('inventoryItemId', get_object_vars($data)) && null !== ($data->inventoryItemId ?? null)) {
+            $dataArray['inventoryItemId'] = $data->inventoryItemId;
         }
-        if ($data->isInitialized('productId') && null !== $data->getProductId()) {
-            $dataArray['productId'] = $data->getProductId();
+        if (array_key_exists('productId', get_object_vars($data)) && null !== ($data->productId ?? null)) {
+            $dataArray['productId'] = $data->productId;
         }
-        if ($data->isInitialized('title')) {
-            $dataArray['title'] = $data->getTitle();
+        if (array_key_exists('title', get_object_vars($data)) && null !== ($data->title ?? null)) {
+            $dataArray['title'] = $data->title;
         }
-        if ($data->isInitialized('productNumber')) {
-            $dataArray['productNumber'] = $data->getProductNumber();
+        if (array_key_exists('productNumber', get_object_vars($data)) && null !== ($data->productNumber ?? null)) {
+            $dataArray['productNumber'] = $data->productNumber;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

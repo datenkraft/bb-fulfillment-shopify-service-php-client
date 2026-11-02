@@ -118,53 +118,57 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
     }
     private function initNormalizer(string $normalizerClass)
     {
-        $normalizer = new $normalizerClass();
-        $normalizer->setNormalizer($this->normalizer);
-        $normalizer->setDenormalizer($this->denormalizer);
+        $normalizer = match ($normalizerClass) {
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuditLogNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuditLogNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuditLogCollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuditLogCollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthPermissionResourceNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthPermissionResourceNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthPermissionRolePaginatedCollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthPermissionRolePaginatedCollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthPermissionRoleResourceNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthPermissionRoleResourceNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleCollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleCollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleIdentityPaginatedCollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleIdentityPaginatedCollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleIdentityResourceNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleIdentityResourceNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleResourceNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\AuthRoleResourceNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\CollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\CollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\CollectionPaginationNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\CollectionPaginationNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ErrorNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ErrorNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ErrorReferencesItemNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ErrorReferencesItemNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ErrorResponseNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ErrorResponseNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\GetAuthPermissionCollectionResponseNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\GetAuthPermissionCollectionResponseNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\InformationNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\InformationNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\InformationResponseNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\InformationResponseNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\NewAuthRoleResourceNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\NewAuthRoleResourceNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyInventoryItemNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyInventoryItemNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyInventoryItemCollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyInventoryItemCollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyProductVariantNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyProductVariantNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyProductVariantCollectionNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopifyProductVariantCollectionNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopClearCachePostBodyNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopClearCachePostBodyNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopClearCachePostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopClearCachePostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsPostBodyNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsPostBodyNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsPostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsPostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsCleanupPostBodyNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsCleanupPostBodyNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsCleanupPostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsCleanupPostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsInitializePostBodyNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsInitializePostBodyNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsInitializePostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopCreateTestProductsInitializePostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopToggleSandboxModePostBodyNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopToggleSandboxModePostBodyNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopToggleSandboxModePostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionShopToggleSandboxModePostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionTestShopRegisterPostBodyNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionTestShopRegisterPostBodyNormalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionTestShopRegisterPostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionTestShopRegisterPostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionTestShopResetPostResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ActionTestShopResetPostResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopInfoGetResponse200Normalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Normalizer\ShopInfoGetResponse200Normalizer(),
+            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ReferenceNormalizer::class => new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\ReferenceNormalizer(),
+            default => throw new \InvalidArgumentException('Unknown normalizer class: ' . $normalizerClass),
+        };
+        if ($normalizer instanceof \Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface) {
+            $normalizer->setNormalizer($this->normalizer);
+        }
+        if ($normalizer instanceof \Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface) {
+            $normalizer->setDenormalizer($this->denormalizer);
+        }
         $this->normalizersCache[$normalizerClass] = $normalizer;
         return $normalizer;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [
-            
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLog::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuditLogCollection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthPermissionResource::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthPermissionRolePaginatedCollection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthPermissionRoleResource::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthRoleCollection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthRoleIdentityPaginatedCollection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthRoleIdentityResource::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\AuthRoleResource::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Collection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\CollectionPagination::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Error::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorReferencesItem::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ErrorResponse::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\GetAuthPermissionCollectionResponse::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Information::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\InformationResponse::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\NewAuthRoleResource::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyInventoryItem::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyInventoryItemCollection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyProductVariant::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopifyProductVariantCollection::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostBody::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopClearCachePostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsPostBody::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsPostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsCleanupPostBody::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsCleanupPostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsInitializePostBody::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopCreateTestProductsInitializePostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopToggleSandboxModePostBody::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionShopToggleSandboxModePostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionTestShopRegisterPostBody::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionTestShopRegisterPostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ActionTestShopResetPostResponse200::class => false,
-            \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\ShopInfoGetResponse200::class => false,
-            \Jane\Component\JsonSchemaRuntime\Reference::class => false,
-        ];
+        return array_combine(array_keys($this->normalizers), array_fill(0, count($this->normalizers), false));
     }
 }

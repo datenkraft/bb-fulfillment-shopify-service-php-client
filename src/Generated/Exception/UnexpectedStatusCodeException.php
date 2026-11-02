@@ -2,10 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Exception;
 
-final class UnexpectedStatusCodeException extends \RuntimeException implements ClientException
+class UnexpectedStatusCodeException extends \RuntimeException implements ClientException, WithResponseInterface
 {
-    public function __construct($status, $message = '')
+    /**
+     * @var \Symfony\Contracts\HttpClient\ResponseInterface|null
+     */
+    private $response;
+    public function __construct($status, $message = '', ?\Symfony\Contracts\HttpClient\ResponseInterface $response = null)
     {
         parent::__construct($message, $status);
+        $this->response = $response;
+    }
+    public function getResponse(): ?\Symfony\Contracts\HttpClient\ResponseInterface
+    {
+        return $this->response;
     }
 }

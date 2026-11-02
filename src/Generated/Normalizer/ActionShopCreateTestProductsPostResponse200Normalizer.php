@@ -42,7 +42,7 @@ class ActionShopCreateTestProductsPostResponse200Normalizer implements Denormali
             foreach ($data['productNumbers'] as $value) {
                 $values[] = $value;
             }
-            $object->setProductNumbers($values);
+            $object->productNumbers = $values;
             unset($data['productNumbers']);
         }
         foreach ($data as $key => $value_1) {
@@ -55,14 +55,14 @@ class ActionShopCreateTestProductsPostResponse200Normalizer implements Denormali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('productNumbers') && null !== $data->getProductNumbers()) {
+        if (array_key_exists('productNumbers', get_object_vars($data)) && null !== ($data->productNumbers ?? null)) {
             $values = [];
-            foreach ($data->getProductNumbers() as $value) {
+            foreach ($data->productNumbers as $value) {
                 $values[] = $value;
             }
             $dataArray['productNumbers'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

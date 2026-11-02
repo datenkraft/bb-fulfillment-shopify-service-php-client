@@ -42,7 +42,7 @@ class ErrorResponseNormalizer implements DenormalizerInterface, NormalizerInterf
             foreach ($data['errors'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model\Error::class, 'json', $context);
             }
-            $object->setErrors($values);
+            $object->errors = $values;
             unset($data['errors']);
         }
         foreach ($data as $key => $value_1) {
@@ -55,14 +55,15 @@ class ErrorResponseNormalizer implements DenormalizerInterface, NormalizerInterf
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('errors') && null !== $data->getErrors()) {
+        if (array_key_exists('errors', get_object_vars($data)) && null !== ($data->errors ?? null)) {
             $values = [];
-            foreach ($data->getErrors() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            foreach ($data->errors as $value) {
+                $normalized = $value === null ? null : $this->normalizer->normalize($value, 'json', $context);
+                $values[] = \is_iterable($normalized) ? new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\JsonObject($normalized) : $normalized;
             }
             $dataArray['errors'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

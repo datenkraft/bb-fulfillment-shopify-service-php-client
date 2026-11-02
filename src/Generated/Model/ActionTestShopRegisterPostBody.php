@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionTestShopRegisterPostBody extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ActionTestShopRegisterPostBody implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * shopifyShopDomain
      *
      * @var string
      */
-    protected $shopifyShopDomain;
-    /**
-     * shopifyShopDomain
-     *
-     * @return string
-     */
-    public function getShopifyShopDomain(): string
+    public string $shopifyShopDomain;
+    public function definedProperties(): array
     {
-        return $this->shopifyShopDomain;
-    }
-    /**
-     * shopifyShopDomain
-     *
-     * @param string $shopifyShopDomain
-     *
-     * @return self
-     */
-    public function setShopifyShopDomain(string $shopifyShopDomain): self
-    {
-        $this->initialized['shopifyShopDomain'] = true;
-        $this->shopifyShopDomain = $shopifyShopDomain;
-        return $this;
+        return ['shopifyShopDomain' => 'shopifyShopDomain'];
     }
 }

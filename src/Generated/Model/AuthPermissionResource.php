@@ -2,70 +2,25 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class AuthPermissionResource extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class AuthPermissionResource implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * Permission Code
      *
      * @var string
      */
-    protected $permissionCode;
+    public string $permissionCode;
     /**
      * Name
      *
      * @var string
      */
-    protected $name;
-    /**
-     * Permission Code
-     *
-     * @return string
-     */
-    public function getPermissionCode(): string
+    public string $name;
+    public function definedProperties(): array
     {
-        return $this->permissionCode;
-    }
-    /**
-     * Permission Code
-     *
-     * @param string $permissionCode
-     *
-     * @return self
-     */
-    public function setPermissionCode(string $permissionCode): self
-    {
-        $this->initialized['permissionCode'] = true;
-        $this->permissionCode = $permissionCode;
-        return $this;
-    }
-    /**
-     * Name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    /**
-     * Name
-     *
-     * @param string $name
-     *
-     * @return self
-     */
-    public function setName(string $name): self
-    {
-        $this->initialized['name'] = true;
-        $this->name = $name;
-        return $this;
+        return ['permissionCode' => 'permissionCode', 'name' => 'name'];
     }
 }

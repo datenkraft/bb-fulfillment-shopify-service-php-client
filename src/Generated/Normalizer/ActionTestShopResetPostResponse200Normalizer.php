@@ -38,7 +38,19 @@ class ActionTestShopResetPostResponse200Normalizer implements DenormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('date', $data)) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['date']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['date']);
+            if (false === $date) {
+                if (is_string($data['date']) and 1 === preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/', $data['date'])) {
+                    try {
+                        $date = new \DateTime($data['date']);
+                    } catch (\Exception) {
+                        throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\InvalidDateException($data['date'], 'Y-m-d\TH:i:sP');
+                    }
+                } else {
+                    throw new \Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\Normalizer\InvalidDateException($data['date'], 'Y-m-d\TH:i:sP');
+                }
+            }
+            $object->date = $date;
             unset($data['date']);
         }
         foreach ($data as $key => $value) {
@@ -51,10 +63,10 @@ class ActionTestShopResetPostResponse200Normalizer implements DenormalizerInterf
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()->format('Y-m-d\TH:i:sP');
+        if (array_key_exists('date', get_object_vars($data)) && null !== ($data->date ?? null)) {
+            $dataArray['date'] = $data->date->format('Y-m-d\TH:i:sP');
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

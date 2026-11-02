@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ActionShopCreateTestProductsPostResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ActionShopCreateTestProductsPostResponse200 implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * The productNumbers of the created products
      *
      * @var list<string>
      */
-    protected $productNumbers;
-    /**
-     * The productNumbers of the created products
-     *
-     * @return list<string>
-     */
-    public function getProductNumbers(): array
+    public array $productNumbers;
+    public function definedProperties(): array
     {
-        return $this->productNumbers;
-    }
-    /**
-     * The productNumbers of the created products
-     *
-     * @param list<string> $productNumbers
-     *
-     * @return self
-     */
-    public function setProductNumbers(array $productNumbers): self
-    {
-        $this->initialized['productNumbers'] = true;
-        $this->productNumbers = $productNumbers;
-        return $this;
+        return ['productNumbers' => 'productNumbers'];
     }
 }

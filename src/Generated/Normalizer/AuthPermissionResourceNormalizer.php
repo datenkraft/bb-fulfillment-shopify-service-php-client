@@ -38,11 +38,11 @@ class AuthPermissionResourceNormalizer implements DenormalizerInterface, Normali
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('permissionCode', $data)) {
-            $object->setPermissionCode($data['permissionCode']);
+            $object->permissionCode = $data['permissionCode'];
             unset($data['permissionCode']);
         }
         if (\array_key_exists('name', $data)) {
-            $object->setName($data['name']);
+            $object->name = $data['name'];
             unset($data['name']);
         }
         foreach ($data as $key => $value) {
@@ -55,9 +55,9 @@ class AuthPermissionResourceNormalizer implements DenormalizerInterface, Normali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['permissionCode'] = $data->getPermissionCode();
-        $dataArray['name'] = $data->getName();
-        foreach ($data as $key => $value) {
+        $dataArray['permissionCode'] = $data->permissionCode;
+        $dataArray['name'] = $data->name;
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -2,70 +2,25 @@
 
 namespace Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Model;
 
-class ErrorReferencesItem extends \ArrayObject
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FulfillmentShopifyService\Generated\Runtime\AdditionalPropertiesInterface;
+class ErrorReferencesItem implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * The reference to the field causing the error
      *
      * @var string
      */
-    protected $key;
+    public string $key;
     /**
      * The value of the field causing the error
      *
      * @var mixed
      */
-    protected $value;
-    /**
-     * The reference to the field causing the error
-     *
-     * @return string
-     */
-    public function getKey(): string
+    public $value;
+    public function definedProperties(): array
     {
-        return $this->key;
-    }
-    /**
-     * The reference to the field causing the error
-     *
-     * @param string $key
-     *
-     * @return self
-     */
-    public function setKey(string $key): self
-    {
-        $this->initialized['key'] = true;
-        $this->key = $key;
-        return $this;
-    }
-    /**
-     * The value of the field causing the error
-     *
-     * @return mixed
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-    /**
-     * The value of the field causing the error
-     *
-     * @param mixed $value
-     *
-     * @return self
-     */
-    public function setValue($value): self
-    {
-        $this->initialized['value'] = true;
-        $this->value = $value;
-        return $this;
+        return ['key' => 'key', 'value' => 'value'];
     }
 }
